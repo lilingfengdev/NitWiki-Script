@@ -1,5 +1,6 @@
+import os
+import sys
 import urllib.request
-import os, sys
 
 print("Minecraft自动AntiSeedCracker")
 print("作者:lilingfeng")
@@ -17,7 +18,7 @@ except ModuleNotFoundError:
 
     try:
         _main(["install", "pyyaml", "-i", "https://pypi.tuna.tsinghua.edu.cn/simple"])
-    except Exception as e:
+    except :
         print("安装失败!")
         sys.exit(0)
     import yaml
