@@ -2,7 +2,10 @@ name: Pre release
 
 on:
   [push]
-    
+
+permissions: 
+   contents: write
+
 
 jobs:
   build:
