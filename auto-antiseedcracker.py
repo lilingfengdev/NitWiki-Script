@@ -1,55 +1,10 @@
-import os
-import sys
+from utils import *
 import urllib.request
 
 print("Minecraft自动AntiSeedCracker")
 print("作者:lilingfeng")
 
-try:
-    import yaml
-
-    try:
-        from yaml import CFullLoader as Loader, CDumper as Dumper
-    except:
-        from yaml import FullLoader as Loader, Dumper as Dumper
-except ModuleNotFoundError:
-    print("PyYaml尚未安装,开始自动安装")
-    from pip._internal.cli.main import main as _main
-
-    try:
-        _main(["install", "pyyaml", "-i", "https://pypi.tuna.tsinghua.edu.cn/simple"])
-    except :
-        print("安装失败!")
-        sys.exit(0)
-    import yaml
-
-    try:
-        from yaml import CFullLoader as Loader, CDumper as Dumper
-    except:
-        from yaml import FullLoader as Loader, Dumper as Dumper
 print("开始配置!")
-
-
-def handler(filename):
-    def a(func):
-        def b():
-            print(f"开始配置{filename}")
-            if not os.path.exists(filename):
-                print(f"{filename}不存在,跳过")
-            try:
-                with open(filename, 'r+', encoding="utf8") as fp:
-                    config = yaml.load(fp, Loader=Loader)
-                func(config)
-                with open(filename, 'w+', encoding="utf8") as fp:
-                    yaml.dump(config, fp, Dumper=Dumper)
-            except Exception as e:
-                print(f"错误:{e}")
-            else:
-                print(f"完成配置{filename}")
-
-        return b
-
-    return a
 
 
 @handler(r'config/paper-world-defaults.yml')

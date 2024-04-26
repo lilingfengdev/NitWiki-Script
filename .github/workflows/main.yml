@@ -14,6 +14,19 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: "3.10"
+      - name: Generate Bundle
+        run: |
+          python generate-bundle.py
+      - name: Remove File
+        run: |
+          rm  -rf generate-bundle.py
+          rm  -rf utils.py
+      - name: Checkout
+        uses: actions/checkout@v2
       - name: Auto release
         uses: "marvinpinto/action-automatic-releases@latest"
         with:

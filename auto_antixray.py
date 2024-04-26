@@ -1,29 +1,5 @@
+from utils import *
 print("Minecraft自动AntiXray")
-print("作者:lilingfeng")
-import os, sys
-
-try:
-    import yaml
-
-    try:
-        from yaml import CFullLoader as Loader, CDumper as Dumper
-    except:
-        from yaml import FullLoader as Loader, Dumper as Dumper
-except ModuleNotFoundError:
-    print("PyYaml尚未安装,开始自动安装")
-    from pip._internal.cli.main import main as _main
-
-    try:
-        _main(["install", "pyyaml", "-i", "https://pypi.tuna.tsinghua.edu.cn/simple"])
-    except Exception as e:
-        print("安装失败!")
-        sys.exit(0)
-    import yaml
-
-    try:
-        from yaml import CFullLoader as Loader, CDumper as Dumper
-    except:
-        from yaml import FullLoader as Loader, Dumper as Dumper
 print("开始配置!")
 
 
@@ -34,31 +10,9 @@ def antixray_config(config):
         config["anticheat"]["antixray"] = {}
 
 
-def handler(filename):
-    def a(func):
-        def b():
-            print(f"开始配置{filename}")
-            if not os.path.exists(filename):
-                print(f"{filename}不存在,跳过")
-            try:
-                with open(filename, 'r+', encoding="utf8") as fp:
-                    config = yaml.load(fp, Loader=Loader)
-                antixray_config(config)
-                func(config)
-                with open(filename, 'w+', encoding="utf8") as fp:
-                    yaml.dump(config, fp, Dumper=Dumper)
-            except Exception as e:
-                print(f"错误:{e}")
-            else:
-                print(f"完成配置{filename}")
-
-        return b
-
-    return a
-
-
 @handler(r'config/paper-world-defaults.yml')
 def config_paper_world(paper):
+    antixray_config(paper)
     paper["anticheat"]["anti-xray"] = {
         "enabled": True,
         "engine-mode": 1,
@@ -93,6 +47,7 @@ def config_paper_world(paper):
 
 @handler(r'world_nether/paper-world.yml')
 def config_paper_nether(paper):
+    antixray_config(paper)
     paper["anticheat"]["anti-xray"] = {
         "enabled": True,
         "engine-mode": 1,
@@ -111,6 +66,7 @@ def config_paper_nether(paper):
 
 @handler(r'world_the_end/paper-world.yml')
 def config_paper_end(paper):
+    antixray_config(paper)
     paper["anticheat"]["anti-xray"]["enabled"] = False
 
 
