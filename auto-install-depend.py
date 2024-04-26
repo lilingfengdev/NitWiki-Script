@@ -49,8 +49,6 @@ def downloads():
                                   "/artifact/build/libs/ViaBackwards-4.9.3-SNAPSHOT.jar")
     download_task("AuthMe", "https://cloud.qcymc.top/f/xv5sx/AuthMe-5.6.0-FORK-Universal.jar")
     download_task("CoreProtect", "https://cloud.qcymc.top/f/yrOHL/CoreProtect-22.2.jar")
-
-
 if __name__ == "__main__":
     downloads()
     wait(task)
