@@ -74,3 +74,4 @@ if __name__ == "__main__":
     config_paper_world()
     config_paper_nether()
     config_paper_end()
+    exit_()

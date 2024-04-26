@@ -237,3 +237,4 @@ if __name__ == "__main__":
     optimize_paper_world()
     optimize_pufferfish()
     optimize_purpur()
+    exit_()

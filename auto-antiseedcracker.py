@@ -26,3 +26,4 @@ def download_antiseedcracker():
 if __name__ == "__main__":
     config_paper_world()
     download_antiseedcracker()
+    exit_()

@@ -1,6 +1,7 @@
 import os
 import urllib.request
 from concurrent.futures import ThreadPoolExecutor, wait
+from utils import *
 
 print("Minecraft自动安装常用插件")
 print("作者:lilingfeng")
@@ -55,3 +56,4 @@ if __name__ == "__main__":
     downloads()
     wait(task)
     print("完成！")
+    exit_()

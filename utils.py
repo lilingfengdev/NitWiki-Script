@@ -46,3 +46,8 @@ def handler(filename):
         return b
 
     return a
+
+def exit_():
+    print("回车退出")
+    input()
+    sys.exit(0)
