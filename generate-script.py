@@ -2,7 +2,7 @@ from textwrap import dedent as _
 from utils import *
 import subprocess
 
-print("Minecraft自动AntiSeedCracker")
+print("Minecraft自动生成启动脚本")
 print("作者:lilingfeng")
 print("此向导将会自动为你生成启动脚本!")
 
