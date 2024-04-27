@@ -89,6 +89,9 @@ def generate_command(server: str, meta: VersionMeta):
     if meta.pufferfish and meta.minecraft_version >= 18:
         base += "--add-modules=jdk.incubator.vector "
 
+    if ask("开启大页面(十分推荐使用)(需要管理员权限)"):
+        base += "-XX:+UseLargePages -XX:LargePageSizeInBytes=2m "
+
     if meta.leaf:
         base += "-DLeaf.library-download-repo=https://maven.aliyun.com/repository/public "
 
