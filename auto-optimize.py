@@ -1,6 +1,12 @@
+import os.path
+
 from utils import *
+
 print("Minecraft自动配置优化")
 print("作者:lilingfeng")
+print("仓库地址:https://github.com/lilingfengdev/NitWiki-Script")
+print("未经许可,禁止用于商业用途")
+
 print("开始优化!")
 
 
@@ -74,6 +80,11 @@ def optimize_spigot(spigot):
         "hopper-transfer": 8,
         "hopper-check": 8
     }
+
+
+@handler(r'config/paper-global.yml')
+def optimize_paper_global(paper):
+    paper["timings"]["enabled"] = False
 
 
 @handler(r'config/paper-world-defaults.yml')
@@ -175,21 +186,22 @@ def optimize_paper_world(paper):
     paper["collisions"]["fix-climbing-bypassing-cramming-rule"] = True
     paper["misc"]["update-pathfinding-on-block-update"] = False
     paper["misc"]["redstone-implementation"] = "ALTERNATE_CURRENT"
-    paper["tick-rates"]["behavior"] = {
-        "villager": {
-            "validatenearbypoi": 60,
-            "acquirepoi": 120
+    if not os.path.exists("pufferfish.yml"):
+        paper["tick-rates"]["behavior"] = {
+            "villager": {
+                "validatenearbypoi": 60,
+                "acquirepoi": 120
+            }
         }
-    }
-    paper["tick-rates"]["sensor"] = {
-        "villager": {
-            "secondarypoisensor": 80,
-            "nearestbedsensor": 80,
-            "villagerbabiessensor": 40,
-            "playersensor": 40,
-            "nearestlivingentitysensor": 40
+        paper["tick-rates"]["sensor"] = {
+            "villager": {
+                "secondarypoisensor": 80,
+                "nearestbedsensor": 80,
+                "villagerbabiessensor": 40,
+                "playersensor": 40,
+                "nearestlivingentitysensor": 40
+            }
         }
-    }
     paper["hopper"]["disable-move-event"] = False
     paper["hopper"]["ignore-occluding-blocks"] = True
     paper["tick-rates"]["mob-spawner"] = 2
@@ -234,6 +246,7 @@ if __name__ == "__main__":
     optimize_prop()
     optimize_bukkit()
     optimize_spigot()
+    optimize_paper_global()
     optimize_paper_world()
     optimize_pufferfish()
     optimize_purpur()

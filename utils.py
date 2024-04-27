@@ -1,27 +1,32 @@
 import sys, os
 
+
+def install_package(name):
+    print(f"{name}尚未安装,开始自动安装")
+    from pip._internal.cli.main import main as _main
+
+    try:
+        _main(["install", name, "-i", "https://pypi.tuna.tsinghua.edu.cn/simple"])
+    except:
+        print("安装失败!")
+        sys.exit(0)
+
+
 try:
     import yaml
 
     try:
         from yaml import CLoader as Loader, CDumper as Dumper
-    except:
-        from yaml import FullLoader as Loader, Dumper as Dumper
+    except ImportError:
+        from yaml import Loader, Dumper
 except ModuleNotFoundError:
-    print("PyYaml尚未安装,开始自动安装")
-    from pip._internal.cli.main import main as _main
-
-    try:
-        _main(["install", "pyyaml", "-i", "https://pypi.tuna.tsinghua.edu.cn/simple"])
-    except Exception as e:
-        print("安装失败!")
-        sys.exit(0)
+    install_package("pyyaml")
     import yaml
 
     try:
         from yaml import CLoader as Loader, CDumper as Dumper
-    except:
-        from yaml import FullLoader as Loader, Dumper as Dumper
+    except ImportError:
+        from yaml import Loader, Dumper
 
 
 def handler(filename):
@@ -46,6 +51,14 @@ def handler(filename):
         return b
 
     return a
+
+
+def ask(title):
+    select = input(title + "(y/n):")
+    if select.lower().startswith("y"):
+        return True
+    return False
+
 
 def exit_():
     print("回车退出")

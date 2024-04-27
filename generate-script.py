@@ -1,9 +1,16 @@
 from textwrap import dedent as _
 from utils import *
-import subprocess
+
+try:
+    from psutil import virtual_memory
+except ModuleNotFoundError:
+    install_package("psutil")
+    from psutil import virtual_memory
 
 print("Minecraft自动生成启动脚本")
 print("作者:lilingfeng")
+print("仓库地址:https://github.com/lilingfengdev/NitWiki-Script")
+print("未经许可,禁止用于商业用途")
 print("此向导将会自动为你生成启动脚本!")
 
 
@@ -16,6 +23,42 @@ def detect_jar():
     return
 
 
+class VersionMeta:
+    pufferfish: bool = False
+    leaf: bool = False
+    minecraft_version: int = 0
+
+
+def detect_brand(name):
+    meta = VersionMeta()
+    a = name.rsplit(".", 1)[0].split("-")
+    if len(a) >= 2:
+        meta.minecraft_version = int(a[1].split(".")[1])
+    else:
+        meta.minecraft_version = int(input("您使用的Minecraft版本(格式:1.x或1.x.x)?").split(".")[1])
+
+    if a[0].lower() == "leaf":
+        meta.leaf = True
+        meta.pufferfish = True
+        return meta
+
+    if a[0] in ["pufferfish", "purpur", "leaves", "gale"]:
+        meta.pufferfish = True
+        return meta
+
+    if a[0] == "paper":
+        return meta
+
+    if ask("使用的是Leaf?"):
+        meta.leaf = True
+        meta.pufferfish = True
+        return meta
+
+    if ask("使用的是Pufferfish或下游(Purpur,Gale,Leaves)(不包含Paper)?"):
+        meta.pufferfish = True
+        return meta
+
+
 def ask(title):
     select = input(title + "(y/n):")
     if select.lower().startswith("y"):
@@ -24,13 +67,12 @@ def ask(title):
 
 
 def get_memory():
-    output = subprocess.check_output(["wmic", "ComputerSystem", "get", "TotalPhysicalMemory"]).decode('utf-8')
-    return int(int(output.strip().split('\n')[1]) / (1024 * 1024))  # to MB
+    return int(virtual_memory().available / (1024 * 1024))  # to MB
 
 
-def generate_script(server: str):
+def generate_command(server: str, meta: VersionMeta):
     if ask("自动检测使用内存"):
-        memory = get_memory() - 100  # to MB
+        memory = get_memory() - 1000  # to MB
         if memory / 1024 > 20:
             memory = 20 * 1024
         print(f"自动使用内存{memory}MB")
@@ -40,14 +82,14 @@ def generate_script(server: str):
             print("不建议为您的服务器分配超过 16-20GB 的内存,给 Java 太多的内存可能会损害服务器的性能")
 
     if not ask("使用优化参数(推荐使用)?"):
-        return f"java -Xms1024M -Xmx{memory}M -jar {server}"
+        return f"java -Xms{memory}M -Xmx{memory}M -jar {server}"
 
     base = f"java -Xms1024M -Xmx{memory}M -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1 -Dusing.aikars.flags=https://mcflags.emc.gs -Daikars.new.flags=true -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 "
 
-    if ask("使用的是Pufferfish或下游(Purpur,Gale,Leaf,Leaves)?"):
+    if meta.pufferfish and meta.minecraft_version >= 18:
         base += "--add-modules=jdk.incubator.vector "
 
-    if ask("使用的是Leaf?"):
+    if meta.leaf:
         base += "-DLeaf.library-download-repo=https://maven.aliyun.com/repository/public "
 
     base += f"-jar {server} "
@@ -58,13 +100,9 @@ def generate_script(server: str):
     return base
 
 
-if __name__ == "__main__":
-    server = detect_jar()
-    if server is None:
-        exit_()
-    command = generate_script(server)
+def generate_batch(command, restart):
     with open("start.bat", "w", encoding="utf8") as fp:
-        if ask("开启自动重启?"):
+        if restart:
             fp.write(_(f"""
                 @echo off
                 chcp 65001
@@ -85,4 +123,12 @@ if __name__ == "__main__":
                 echo MC服务器已关闭
                 pause
             """))
+
+
+if __name__ == "__main__":
+    server = detect_jar()
+    if server is None:
+        exit_()
+    command = generate_command(server, detect_brand(server))
+    generate_batch(command, ask("开启自动重启?"))
     exit_()
