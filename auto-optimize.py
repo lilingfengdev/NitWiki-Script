@@ -10,22 +10,6 @@ print("未经许可,禁止用于商业用途")
 print("开始优化!")
 
 
-class ServerPropLoader:
-
-    def __init__(self):
-        self.data = {}
-        with open("server.properties", "r") as fp:
-            for line in fp.readlines():
-                if not line.startswith("#"):
-                    k, v = line.split("=", 1)
-                    self.data[k] = v.strip()
-
-    def dump(self):
-        with open("server.properties", "w") as fp:
-            for key in self.data.keys():
-                fp.write(key + "=" + str(self.data[key]) + "\n")
-
-
 def optimize_prop():
     prop = ServerPropLoader()
     prop.data["view-distance"] = 7
