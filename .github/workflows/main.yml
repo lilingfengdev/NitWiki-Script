@@ -17,12 +17,10 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v3
         with:
-          python-version: "3.8"
+          python-version: "3.6"
       - name: Generate Bundle
         run: |
           python generate-bundle.py
-      - name: Install 2to3
-        run: pip install 2to3
       - name: Install pyminifier
         run: pip install pyminifier
       - name: Minify Bundle
