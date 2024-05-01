@@ -1,5 +1,5 @@
 import os
-
+import lzma
 # 傻逼
 # 狗屎代碼
 with open("utils.py", "r", encoding="utf8") as util:
@@ -9,5 +9,6 @@ for file in os.listdir(os.getcwd()):
         with open(file, "r+", encoding="utf8") as raw:
             raw = raw.read()
         raw = raw.replace("from utils import *", util_context)
+        raw = lzma.compress(raw.encode("utf8"))
         with open(file, "w+", encoding="utf8") as new:
-            new.write(raw)
+            new.write(f"import lzma\nexec(lzma.decompress({raw}).decode('utf8'))")
