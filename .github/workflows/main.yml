@@ -22,8 +22,9 @@ jobs:
         run: |
           python generate-bundle.py
       - name: Remove File
+        shell: powershell
         run: |
-          del /S /Q "generate-bundle.py" "utils.py"
+          Remove-Item -Force -Recurse "generate-bundle.py", "utils.py"
       - name: Auto release
         uses: "marvinpinto/action-automatic-releases@latest"
         with:
