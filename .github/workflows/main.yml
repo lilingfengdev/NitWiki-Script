@@ -35,4 +35,4 @@ jobs:
             *.py
             *.bat
       - name: Test For Install
-        run: install-python.bat
+        run: ./install-python.bat
