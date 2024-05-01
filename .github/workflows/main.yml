@@ -21,8 +21,10 @@ jobs:
       - name: Generate Bundle
         run: |
           python generate-bundle.py
+      - name: Install 2to3
+        run: pip install 2to3
       - name: Install pyminifier
-        run: pip install pyminifier 2to3
+        run: pip install pyminifier
       - name: Minify Bundle
         run: pyminifier -d=/output --lzma *.py --nonlatin --obfuscate -replacement-length=1
       - name: Remove File
