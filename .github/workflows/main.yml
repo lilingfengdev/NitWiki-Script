@@ -25,8 +25,6 @@ jobs:
         run: |
           rm  -rf generate-bundle.py
           rm  -rf utils.py
-      - name: Checkout
-        uses: actions/checkout@v2
       - name: Auto release
         uses: "marvinpinto/action-automatic-releases@latest"
         with:
