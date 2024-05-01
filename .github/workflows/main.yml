@@ -21,10 +21,14 @@ jobs:
       - name: Generate Bundle
         run: |
           python generate-bundle.py
+      - name: Install pyminifier
+        run: pip install pyminifier
+      - name: Minify Bundle
+        run: pyminifier -d=/output --lzma *.py --nonlatin --obfuscate -replacement-length=1
       - name: Remove File
         run: |
-          rm  -rf generate-bundle.py
-          rm  -rf utils.py
+          rm  -rf /output/generate-bundle.py
+          rm  -rf /output/utils.py
       - name: Auto release
         uses: "marvinpinto/action-automatic-releases@latest"
         with:
@@ -32,4 +36,4 @@ jobs:
           automatic_release_tag: latest
           prerelease: true
           files: |
-            *.py
+            /output/*.py
