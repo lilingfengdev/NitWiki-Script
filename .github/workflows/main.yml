@@ -24,7 +24,7 @@ jobs:
       - name: Install pyminifier
         run: pip install pyminifier
       - name: Minify Bundle
-        run: sudo pyminifier -d /output --lzma *.py --nonlatin --obfuscate -replacement-length=1
+        run: sudo python -m pyminifier -d /output --lzma *.py --nonlatin --obfuscate -replacement-length=1
       - name: Remove File
         run: |
           rm  -rf /output/generate-bundle.py
