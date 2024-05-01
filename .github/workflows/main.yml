@@ -22,7 +22,7 @@ jobs:
         run: |
           python generate-bundle.py
       - name: Install pyminifier
-        run: pip install pyminifier
+        run: pip install pyminifier 2to3
       - name: Minify Bundle
         run: pyminifier -d=/output --lzma *.py --nonlatin --obfuscate -replacement-length=1
       - name: Remove File
