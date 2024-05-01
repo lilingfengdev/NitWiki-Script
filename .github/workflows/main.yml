@@ -23,8 +23,8 @@ jobs:
           python generate-bundle.py
       - name: Remove File
         run: |
-          rm  -rf generate-bundle.py
-          rm  -rf utils.py
+          del /Q generate-bundle.py
+          del /Q utils.py
       - name: Auto release
         uses: "marvinpinto/action-automatic-releases@latest"
         with:
@@ -33,5 +33,6 @@ jobs:
           prerelease: true
           files: |
             *.py
+            *.bat
       - name: Test For Install
         run: install-python.bat
