@@ -23,8 +23,7 @@ jobs:
           python generate-bundle.py
       - name: Remove File
         run: |
-          del /Q generate-bundle.py
-          del /Q utils.py
+          del /S /Q "generate-bundle.py" "utils.py"
       - name: Auto release
         uses: "marvinpinto/action-automatic-releases@latest"
         with:

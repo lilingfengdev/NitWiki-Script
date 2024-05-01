@@ -8,6 +8,6 @@ echo 开始安装
 python-installer.exe /quiet CompileAll=1 SimpleInstallDescription="笨蛋脚本Python自动安装程序" Include_test=0 PrependPath=1
 echo 安装完成
 echo 清理安装文件
-del /Q python-installer.exe
+del /Q /S "python-installer.exe"
 echo 清理完成
 pause
