@@ -12,6 +12,6 @@ del /Q /S "python-installer.exe"
 echo 清理完成
 echo 下载前置库
 pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
-pip install pyyaml psutil
+pip install pyyaml psutil install-jdk
 echo 前置库下载完成
 pause
