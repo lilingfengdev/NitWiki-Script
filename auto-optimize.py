@@ -2,10 +2,7 @@ import os.path
 
 from utils import *
 
-print("Minecraft自动配置优化")
-print("作者:lilingfeng")
-print("仓库地址:https://github.com/lilingfengdev/NitWiki-Script")
-print("未经许可,禁止用于商业用途")
+script_license()
 
 print("开始优化!")
 

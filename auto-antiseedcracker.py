@@ -1,10 +1,7 @@
 from utils import *
 import urllib.request
 
-print("Minecraft自动AntiSeedCracker")
-print("作者:lilingfeng")
-print("仓库地址:https://github.com/lilingfengdev/NitWiki-Script")
-print("未经许可,禁止用于商业用途")
+script_license()
 print("开始配置!")
 
 

@@ -3,10 +3,7 @@ import urllib.request
 from concurrent.futures import ThreadPoolExecutor, wait
 from utils import *
 
-print("Minecraft自动安装常用插件")
-print("作者:lilingfeng")
-print("仓库地址:https://github.com/lilingfengdev/NitWiki-Script")
-print("未经许可,禁止用于商业用途")
+script_license()
 
 opener = urllib.request.build_opener()
 opener.addheaders = [

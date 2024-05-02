@@ -1,9 +1,6 @@
 from utils import *
 
-print("Minecraft自动AntiXray")
-print("开始配置!")
-print("仓库地址:https://github.com/lilingfengdev/NitWiki-Script")
-print("未经许可,禁止用于商业用途")
+script_license()
 
 hide_air_block = ask("隐藏空气中的矿石(可能会导致性能问题)")
 

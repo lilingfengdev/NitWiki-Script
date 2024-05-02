@@ -1,6 +1,13 @@
 import sys, os
 
 
+def script_license():
+    print("Minecraft笨蛋脚本")
+    print("作者:lilingfeng")
+    print("仓库地址:https://github.com/lilingfengdev/NitWiki-Script")
+    print("未经许可,禁止用于商业用途")
+
+
 def install_package(name):
     print(f"{name}尚未安装,开始自动安装")
     from pip._internal.cli.main import main as _main

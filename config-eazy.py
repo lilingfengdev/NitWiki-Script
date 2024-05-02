@@ -1,9 +1,6 @@
 from utils import *
 
-print("Minecraft配置常用配置")
-print("开始配置!")
-print("仓库地址:https://github.com/lilingfengdev/NitWiki-Script")
-print("未经许可,禁止用于商业用途")
+script_license()
 
 
 def config():
