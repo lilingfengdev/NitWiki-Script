@@ -33,22 +33,19 @@ def downloads():
     download_task("ProtocolLib", "https://ci.dmulloy2.net/job/ProtocolLib/lastSuccessfulBuild/artifact/build/libs"
                                  "/ProtocolLib.jar")
     download_task("Luckperms", "https://download.luckperms.net/1535/bukkit/loader/LuckPerms-Bukkit-5.4.122.jar")
-    download_task("PlaceholderAPI", "https://ci.extendedclip.com/job/PlaceholderAPI/lastSuccessfulBuild/artifact/build"
-                                    "/libs/PlaceholderAPI-2.11.6-DEV-191.jar")
-    download_task("PlugManx", "https://cloud.qcymc.top/f/wmxTy/PlugManx.jar")
+    download_task("PlaceholderAPI", "https://ci.extendedclip.com/job/PlaceholderAPI/193/artifact/build/libs"
+                                    "/PlaceholderAPI-2.11.6-DEV-193.jar")
+    download_task("PlugManx", "https://qcymc.cloud/f/QRCo/PlugManX-2.3.8.jar")
     download_task("WorldEdit", "https://ci.enginehub.org/repository/download/bt10/23766:id/worldedit-bukkit-7.3.1"
                                "-SNAPSHOT-dist.jar?branch=version/7.3.x&guest=1")
-    download_task("item-nbt-api", "https://ci.codemc.io/job/Tr7zw/job/Item-NBT-API/lastSuccessfulBuild/artifact/item"
-                                  "-nbt-plugin/target/item-nbt-api-plugin-2.12.4-SNAPSHOT.jar")
-    download_task("EssentialsX", "https://cloud.qcymc.top/f/voxHA/EssentialsX-2.21.0-dev+78-c60ed56.jar")
-    download_task("Multiverse-Core", "https://ci.onarandombox.com/job/Multiverse-Core/lastSuccessfulBuild/artifact"
-                                     "/target/Multiverse-Core-4.3.2-SNAPSHOT.jar")
-    download_task("ViaVersion", "https://ci.viaversion.com/job/ViaVersion/lastSuccessfulBuild/artifact/build/libs"
-                                "/ViaVersion-4.9.4-SNAPSHOT.jar")
-    download_task("ViaBackwards", "https://ci.viaversion.com/view/ViaBackwards/job/ViaBackwards/lastSuccessfulBuild"
-                                  "/artifact/build/libs/ViaBackwards-4.9.3-SNAPSHOT.jar")
-    download_task("AuthMe", "https://cloud.qcymc.top/f/xv5sx/AuthMe-5.6.0-FORK-Universal.jar")
-    download_task("CoreProtect", "https://cloud.qcymc.top/f/yrOHL/CoreProtect-22.2.jar")
+    download_task("EssentialsX", "https://qcymc.cloud/f/XBSO/EssentialsX-2.21.0-dev+81-cde7184.jar")
+    download_task("Multiverse-Core", "https://ci.onarandombox.com/job/Multiverse-Core/870/artifact/target/Multiverse"
+                                     "-Core-4.3.2-SNAPSHOT.jar")
+    download_task("ViaVersion", "https://qcymc.cloud/f/VjHg/ViaVersion-4.10.1-SNAPSHOT.jar")
+    download_task("ViaBackwards", "https://qcymc.cloud/f/W9ID/ViaBackwards-4.10.1-SNAPSHOT.jar")
+    download_task("AuthMe", "https://qcymc.cloud/f/RDF5/AuthMe-5.6.0-FORK-Universal.jar")
+    download_task("spark",
+                  "https://ci.lucko.me/job/spark/410/artifact/spark-bukkit/build/libs/spark-1.10.65-bukkit.jar")
 
 
 if __name__ == "__main__":
