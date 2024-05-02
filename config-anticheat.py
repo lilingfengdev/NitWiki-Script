@@ -1,3 +1,4 @@
+import io
 from utils import *
 import zipfile, base64, shutil
 
@@ -7,9 +8,8 @@ config = b"UEsDBBQAAAAAANcWoVgAAAAAAAAAAAAAAAAFAAAAQUFDNC9QSwMEFAAAAAAA1xahWAAAA
 
 
 def extract_zipfile():
-    with open("temp.zip", "wb") as w:
-        w.write(base64.b64decode(config))
-    zip = zipfile.ZipFile("temp.zip")
+    config_file = io.BytesIO(base64.b64decode(config))
+    zip = zipfile.ZipFile(config_file)
     zip.extractall(os.path.join(os.getcwd(), "temp"))
 
 
