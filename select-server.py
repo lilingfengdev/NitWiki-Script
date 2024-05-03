@@ -60,22 +60,39 @@ class MinixServer:
     @staticmethod
     def minix_select():
         print("选择你的服务器类型")
-        generate_select([{"name": "Fabric端"}, {"name": "Forge端"}])
+        generate_select([{"name": "Fabric端", "call": MinixServer.select_fabric},
+                         {"name": "Forge端", "call": MinixServer.select_forge}])
 
     @staticmethod
     def select_fabric():
-        print("Banner是你的选择!")
+        print("Banner和ArcLight-Fabric都可以!")
 
     @staticmethod
     def select_forge():
-        pass
-        # to do
+        print("请选择服务器版本")
+        generate_select([{"name": "1.7服务器", "call": MinixServer.select_17},
+                         {"name": "1.12.2服务器", "call": MinixServer.select_1122},
+                         {"name": "1.16.5以上服务器", "call": MinixServer.select_1165}])
+
+    @staticmethod
+    def select_17():
+        print("Crucible是你的选择!")
+
+    @staticmethod
+    def select_1122():
+        print("CatServer是你的选择!")
+
+    @staticmethod
+    def select_1165():
+        print("Mohist和ArcLight都可以!")
 
 
 def select_main():
     print("请选择服务器类型")
     generate_select(
-        [{"name": "插件端", "call": PluginServer.plugin_select}, {"name": "混合(插件+模组)端"}, {"name": "模组端"}])
+        [{"name": "插件端", "call": PluginServer.plugin_select},
+         {"name": "混合(插件+模组)端", "call": MinixServer.minix_select},
+         {"name": "模组端", "call": ModServer.mod_select}])
 
 
 if __name__ == "__main__":
