@@ -12,7 +12,7 @@ script_license()
 
 def java_install(add_path=False):
     try:
-        jdk.install("8", vendor="Zulu") if ask("服务器版本是否小于等于 1.16.5? ") else jdk.install("19", vendor="Zulu")
+        jdk.install("8") if ask("服务器版本是否小于等于 1.16.5? ") else jdk.install("19")
     except Exception as e:
         print(f"安装失败: {e}")
         exit_()
