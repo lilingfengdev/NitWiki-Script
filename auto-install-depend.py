@@ -44,8 +44,9 @@ def downloads():
     download_task("ViaVersion", "https://qcymc.cloud/f/VjHg/ViaVersion-4.10.1-SNAPSHOT.jar")
     download_task("ViaBackwards", "https://qcymc.cloud/f/W9ID/ViaBackwards-4.10.1-SNAPSHOT.jar")
     download_task("AuthMe", "https://qcymc.cloud/f/RDF5/AuthMe-5.6.0-FORK-Universal.jar")
-    download_task("spark",
-                  "https://ci.lucko.me/job/spark/410/artifact/spark-bukkit/build/libs/spark-1.10.65-bukkit.jar")
+    if not os.path.exists("plugins/spark"):
+        download_task("spark",
+                      "https://ci.lucko.me/job/spark/410/artifact/spark-bukkit/build/libs/spark-1.10.65-bukkit.jar")
     download_task("SkinRestorer", "https://ci.codemc.io/job/SkinsRestorer/job/SkinsRestorer/lastSuccessfulBuild"
                                   "/artifact/build/libs/SkinsRestorer.jar")
 
