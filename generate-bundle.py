@@ -12,5 +12,5 @@ with open("utils.py", "r", encoding="utf8") as util:
     util_context = util.read()
 for file in os.listdir(os.getcwd()):
     if file != "utils.py" and file != "generate-bundle.py" and file.endswith(".py") and not os.path.isdir(file):
-        print(f"正在生成{file}")
+        print(f"build {file}")
         os.system(f"pyarmor gen --enable-jit --assert-call --assert-import --pack onefile {file} ")
