@@ -25,7 +25,14 @@ def java_install(add_path=False):
     path = os.path.expanduser("~") + "\\.jdk"
     java_path = os.path.join(path, os.listdir(path)[0])
     if add_path:
-        os.system(f'chcp 65001&setx JAVA_HOME {java_path}&setx "Path" "%Path%;%JAVA_HOME%\\bin" /m')
+        try:
+            kernel32 = ctypes.windll.kernel32
+            kernel32.SetEnvironmentVariableW("JAVA_HOME", java_path)
+            current_path = os.environ.get('PATH', '')
+            new_path = f"{java_path}\\bin;{current_path}"
+            kernel32.SetEnvironmentVariableW("Path", new_path)
+        except Exception as e:
+            print(f"设置环境变量失败: {e}")
     print("安装完成")
 
 
