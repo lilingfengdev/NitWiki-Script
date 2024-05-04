@@ -83,7 +83,7 @@ class ServerPropLoader:
                     k, v = line.split("=", 1)
                     self.data[k] = v.strip()
 
-    def dump(self):
+    def save(self):
         with open("server.properties", "w") as fp:
             for key in self.data.keys():
                 fp.write(key + "=" + str(self.data[key]) + "\n")

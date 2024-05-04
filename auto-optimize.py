@@ -13,7 +13,7 @@ def optimize_prop():
     prop.data["allow-flight"] = "true"
     prop.data["use-native-transport"] = "true"
     prop.data["simulation-distance"] = 4
-    prop.dump()
+    prop.save()
 
 
 @handler('bukkit.yml')

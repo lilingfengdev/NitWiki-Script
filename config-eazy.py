@@ -12,7 +12,7 @@ def config():
         prop.data["online-mode"] = "false"
     prop.data["level-seed"] = input("输入种子,为空则随机生成:")
     prop.data["max-players"] = int(input("输入最大玩家数(默认20):"))
-    prop.dump()
+    prop.save()
 
 
 if __name__ == "__main__":
