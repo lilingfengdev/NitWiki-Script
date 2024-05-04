@@ -136,6 +136,11 @@ if __name__ == "__main__":
     if not ask("自动安装"):
         exit_()
     print("开始下载")
-    request.urlretrieve(url, "server.jar")
-    print("下载完成")
-    exit_()
+    try:
+        request.urlretrieve(url, "server.jar")
+    except Exception as e:
+        print(f"下载失败: {e}")
+    else:
+        print("下载完成")
+    finally:
+        exit_()
