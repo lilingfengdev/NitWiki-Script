@@ -4,7 +4,7 @@ import urllib.request, zipfile
 urllib.request.urlretrieve("https://github.com/upx/upx/releases/download/v4.2.3/upx-4.2.3-win32.zip",
                            "upx-4.2.3-win32.zip")
 zip = zipfile.ZipFile("upx-4.2.3-win32.zip")
-zip.extract("upx-4.2.3-win32/upx.exe", os.getcwd())
+zip.extract("upx-4.2.3-win32/upx.exe", path=os.getcwd())
 # 傻逼
 # 狗屎代碼
 
