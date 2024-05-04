@@ -2,6 +2,7 @@ import json
 
 from utils import *
 from urllib import request
+
 opener = request.build_opener()
 opener.addheaders = [
     ('User-Agent', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101 Firefox/102.0')]
@@ -131,7 +132,7 @@ def select_main():
 
 
 if __name__ == "__main__":
-    url=select_main()
+    url = select_main()
     if not ask("自动安装"):
         exit_()
     print("开始下载")

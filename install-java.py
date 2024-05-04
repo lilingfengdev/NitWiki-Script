@@ -12,8 +12,12 @@ script_license()
 
 def java_install(add_path=False):
     try:
-        print("如果使用的核心是 Beast,SportPaper,")
-        jdk.install("8") if ask("服务器版本是否小于等于 1.16.5? ") else jdk.install("19")
+        if ask("安装Java21(推荐在Leaf,Beast上启用)(不支持1.16.5以下"):
+            jdk.install("21")
+        elif ask("服务器版本是否大于 1.16.5 "):
+            jdk.install("19")
+        else:
+            jdk.install("8")
     except Exception as e:
         print(f"安装失败: {e}")
         exit_()
