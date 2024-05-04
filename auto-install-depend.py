@@ -46,7 +46,9 @@ def downloads():
     download_task("AuthMe", "https://qcymc.cloud/f/RDF5/AuthMe-5.6.0-FORK-Universal.jar")
     download_task("spark",
                   "https://ci.lucko.me/job/spark/410/artifact/spark-bukkit/build/libs/spark-1.10.65-bukkit.jar")
-    download_task("SkinRestorer","https://ci.codemc.io/job/SkinsRestorer/job/SkinsRestorer/lastSuccessfulBuild/artifact/build/libs/SkinsRestorer.jar")
+    download_task("SkinRestorer", "https://ci.codemc.io/job/SkinsRestorer/job/SkinsRestorer/lastSuccessfulBuild"
+                                  "/artifact/build/libs/SkinsRestorer.jar")
+
 
 if __name__ == "__main__":
     downloads()

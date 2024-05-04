@@ -16,7 +16,7 @@ def install_package(name):
         _main(["install", name, "-i", "https://pypi.tuna.tsinghua.edu.cn/simple"])
     except:
         print("安装失败!")
-        sys.exit(0)
+        exit_()
 
 
 try:

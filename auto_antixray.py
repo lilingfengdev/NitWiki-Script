@@ -4,13 +4,14 @@ script_license()
 
 hide_air_block = ask("隐藏空气中的矿石(可能会导致性能问题)")
 
+
 def hide_air(config):
     if hide_air_block:
         config["anticheat"]["anti-xray"]["hidden-blocks"].append("air")
 
+
 def antixray_config(config):
     config["anticheat"] = {"anti-xray": {}}
-
 
 
 @handler(r'config/paper-world-defaults.yml')
@@ -47,6 +48,7 @@ def config_paper_world(paper):
         "use-permission": False
     }
     hide_air(paper)
+
 
 @handler(r'world_nether/paper-world.yml')
 def config_paper_nether(paper):
