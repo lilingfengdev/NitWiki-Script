@@ -1,14 +1,16 @@
 import os
-import lzma
+import urllib.request, zipfile
+
+urllib.request.urlretrieve("https://github.com/upx/upx/releases/download/v4.2.3/upx-4.2.3-win32.zip",
+                           "upx-4.2.3-win32.zip")
+zip = zipfile.ZipFile("upx-4.2.3-win32.zip")
+zip.extract("upx-4.2.3-win32/upx.exe", os.getcwd())
 # 傻逼
 # 狗屎代碼
+
 with open("utils.py", "r", encoding="utf8") as util:
     util_context = util.read()
 for file in os.listdir(os.getcwd()):
     if file != "utils.py" and file != "generate-bundle.py" and file.endswith(".py") and not os.path.isdir(file):
-        with open(file, "r+", encoding="utf8") as raw:
-            raw = raw.read()
-        raw = raw.replace("from utils import *", util_context)
-        raw = lzma.compress(raw.encode("utf8"))
-        with open(file, "w+", encoding="utf8") as new:
-            new.write(f"import lzma\nexec(lzma.decompress({raw}).decode('utf8'))")
+        print(f"正在生成{file}")
+        os.system(f"pyarmor gen --enable-jit --assert-call --assert-import --pack onefile {file} ")
