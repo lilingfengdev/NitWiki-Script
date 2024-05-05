@@ -1,4 +1,10 @@
 import sys, os
+import yaml
+
+try:
+    from yaml import CLoader as Loader, CDumper as Dumper
+except ImportError:
+    from yaml import Loader, Dumper
 
 
 def script_license():
@@ -6,34 +12,6 @@ def script_license():
     print("作者:lilingfeng")
     print("仓库地址:https://github.com/lilingfengdev/NitWiki-Script")
     print("未经许可,禁止用于商业用途")
-
-
-def install_package(name):
-    print(f"{name}尚未安装,开始自动安装")
-    from pip._internal.cli.main import main as _main
-
-    try:
-        _main(["install", name, "-i", "https://pypi.tuna.tsinghua.edu.cn/simple"])
-    except:
-        print("安装失败!")
-        exit_()
-
-
-try:
-    import yaml
-
-    try:
-        from yaml import CLoader as Loader, CDumper as Dumper
-    except ImportError:
-        from yaml import Loader, Dumper
-except ModuleNotFoundError:
-    install_package("pyyaml")
-    import yaml
-
-    try:
-        from yaml import CLoader as Loader, CDumper as Dumper
-    except ImportError:
-        from yaml import Loader, Dumper
 
 
 def handler(filename):

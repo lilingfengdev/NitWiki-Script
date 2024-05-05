@@ -1,11 +1,7 @@
 from textwrap import dedent as _
 from utils import *
+from psutil import virtual_memory
 
-try:
-    from psutil import virtual_memory
-except ModuleNotFoundError:
-    install_package("psutil")
-    from psutil import virtual_memory
 
 script_license()
 print("此向导将会自动为你生成启动脚本!")

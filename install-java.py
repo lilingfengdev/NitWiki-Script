@@ -1,10 +1,5 @@
 from utils import *
-
-try:
-    import jdk
-except ModuleNotFoundError:
-    install_package("jdk")
-    import jdk
+import jdk
 import os, ctypes
 
 script_license()
