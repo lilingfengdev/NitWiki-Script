@@ -223,6 +223,15 @@ def optimize_purpur(purpur):
     purpur["world-settings"]["default"]["gameplay-mechanics"]["player"]["teleport-if-outside-border"] = True
 
 
+@handler('catserver.yml')
+def optimize_catserver(catserver):
+    catserver["world"]["keepSpawnInMemory"] = False
+    catserver["world"]["enableSkipEntityTick"] = True
+    catserver["world"]["enableSkipTileEntityTick"] = True
+    catserver["world"]["worldGenMaxTick"] = 10
+    catserver["world"]["enableRealtime"] = True
+
+
 if __name__ == "__main__":
     optimize_prop()
     optimize_bukkit()
