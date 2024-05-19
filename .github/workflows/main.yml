@@ -20,7 +20,7 @@ jobs:
           python-version: "3.8"
           architecture: 'x86'
       - name: Install Dependencies
-        run: pip install pyyaml install-jdk psutil pyinstaller pyarmor
+        run: pip install pyyaml install-jdk psutil rtoml pyinstaller pyarmor
       - name: Generate Bundle
         run: |
           python generate-bundle.py
