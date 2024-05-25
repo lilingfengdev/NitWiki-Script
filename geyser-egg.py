@@ -13,6 +13,7 @@ def main():
     setup_geyser()
     setup_floodgate()
     install_extend()
+    exit_()
 
 
 def install_geyser():
