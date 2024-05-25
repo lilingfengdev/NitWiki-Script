@@ -75,19 +75,22 @@ def download(url, local_filepath):
         "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) "
                       "Chrome/111.0.0.0 Safari/537.36"
     }
-    with requests.get(url, stream=True, headers=headers) as r:
-        r.raise_for_status()
-        size = int(r.headers["Content-Length"])
-        chunk_size = 8192
-        with tqdm.tqdm(
-                unit="B",
-                unit_scale=True,
-                unit_divisor=1024,
-                miniters=1,
-                desc=f"下载文件 {local_filepath}",
-                total=size,
-        ) as pbar:
-            with open(local_filepath, "wb") as f:
-                for chunk in r.iter_content(chunk_size=chunk_size):
-                    f.write(chunk)
-                    pbar.update(len(chunk))
+    try:
+        with requests.get(url, stream=True, headers=headers) as r:
+            r.raise_for_status()
+            size = int(r.headers["Content-Length"])
+            chunk_size = 8192
+            with tqdm.tqdm(
+                    unit="B",
+                    unit_scale=True,
+                    unit_divisor=1024,
+                    miniters=1,
+                    desc=f"下载文件 {local_filepath}",
+                    total=size,
+            ) as pbar:
+                with open(local_filepath, "wb") as f:
+                    for chunk in r.iter_content(chunk_size=chunk_size):
+                        f.write(chunk)
+                        pbar.update(len(chunk))
+    except Exception as e:
+        print(f"下载错误:{e}")

@@ -52,7 +52,7 @@ def install_extend():
                  "plugins/BedrockParity.jar")
     if ask("安装皮肤修复(推荐)"):
         download("https://github.com/Camotoy/GeyserSkinManager/releases/download/1.7/GeyserSkinManager-Spigot.jar",
-                 "GeyserSkinManager-Spigot.jar")
+                 "plugins/GeyserSkinManager-Spigot.jar")
     if ask("安装箱子菜单修复"):
         download("https://gitee.com/xi-bohan/BedrockChestUI/releases/download/BedrockChestUI/ChstomChest0.2.mcpack",
                  "plugins/Geyser-Spigot/packs/ChstomChest0.2.mcpack")
