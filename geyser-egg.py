@@ -45,6 +45,29 @@ def install_extend():
     if ask("安装GeyserOptionalPack(推荐)"):
         download("https://download.geysermc.org/v2/projects/geyseroptionalpack/versions/latest/builds/latest"
                  "/downloads/geyseroptionalpack", "plugins/Geyser-Spigot/packs/geyseroptionalpack.mcpack")
+    if ask("安装Geyser行为修复(推荐)"):
+        download("https://github.com/GeyserMC/Hurricane/releases/download/2.0-SNAPSHOT-1/Hurricane.jar",
+                 "plugins/Hurricane.jar")
+        download("https://github.com/tbyt/BedrockParity/releases/download/release/BedrockParity.jar",
+                 "plugins/BedrockParity.jar")
+    if ask("安装皮肤修复(推荐)"):
+        download("https://github.com/Camotoy/GeyserSkinManager/releases/download/1.7/GeyserSkinManager-Spigot.jar",
+                 "GeyserSkinManager-Spigot.jar")
+    if ask("安装箱子菜单修复"):
+        download("https://gitee.com/xi-bohan/BedrockChestUI/releases/download/BedrockChestUI/ChstomChest0.2.mcpack",
+                 "plugins/Geyser-Spigot/packs/ChstomChest0.2.mcpack")
+        download("https://gitee.com/xi-bohan/BedrockChestUI/releases/download/BedrockChestUI/BedrockChestUI-1.0.5.jar",
+                 "plugins/BedrockChestUI-1.0.5.jar")
+    if ask("安装GeyserUtils(推荐)"):
+        download("https://github.com/zimzaza4/GeyserUtils/releases/download/1.0.0-fix/geyserutils-spigot-1.0-SNAPSHOT"
+                 ".jar", "plugins/geyserutils-spigot-1.0-SNAPSHOT.jar")
+        download("https://github.com/zimzaza4/GeyserUtils/releases/download/1.0.0-fix/geyserutils-geyser-1.0-SNAPSHOT"
+                 ".jar", "plugins/Geyser-Spigot/extensions/geyserutils-geyser-1.0-SNAPSHOT.jar")
+    if ask("安装更好的第三人称视角(推荐)(需要GeyserUtils)"):
+        download("https://github.com/lilingfengdev/GeyserBetterBedrockThirdPerson/releases/download/latest"
+                 "/BetterBedrockThirdPerson-1.0-SNAPSHOT.jar", "plugins/BetterBedrockThirdPerson-1.0-SNAPSHOT.jar")
+    if ask("安装Luckperms基岩版支持"):
+        download("https://qcymc.cloud/f/mZLhW/[MineBBS]-LuckBedrock-1.1.jar", "plugins/LuckBedrock-1.1.jar")
 
 
 if __name__ == "__main__":
