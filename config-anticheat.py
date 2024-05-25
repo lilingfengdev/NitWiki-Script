@@ -2,18 +2,14 @@ import io
 import os
 
 from utils import *
-import zipfile,  shutil
+import zipfile, shutil
 import urllib.request
 
 script_license()
 
 
 def extract_zipfile():
-    opener = urllib.request.build_opener()
-    opener.addheaders = [
-        ('User-Agent', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101 Firefox/102.0')]
-    urllib.request.install_opener(opener)
-    urllib.request.urlretrieve("https://qcymc.cloud/f/lYAfX/temp.zip","temp.zip")
+    download("https://qcymc.cloud/f/lYAfX/temp.zip", "temp.zip")
     zip = zipfile.ZipFile("temp.zip")
     zip.extractall(os.path.join(os.getcwd(), "temp"))
 

@@ -1,5 +1,5 @@
 import sys, os
-import yaml
+import yaml, requests, tqdm
 
 try:
     from yaml import CLoader as Loader, CDumper as Dumper
@@ -8,10 +8,10 @@ except ImportError:
 
 
 def script_license():
-    print("Minecraft笨蛋脚本")
-    print("作者:lilingfeng")
-    print("仓库地址:https://github.com/lilingfengdev/NitWiki-Script")
-    print("未经许可,禁止用于商业用途")
+    print("\033[92mMinecraft笨蛋脚本\033[0m")
+    print("\033[92m作者:lilingfeng\033[0m")
+    print("\033[92m仓库地址:https://github.com/lilingfengdev/NitWiki-Script\033[0m")
+    print("\033[91m未经许可,禁止用于商业用途\033[0m")
 
 
 def handler(filename):
@@ -39,7 +39,10 @@ def handler(filename):
 
 
 def ask(title):
-    select = input(title + "(y/n):")
+    YELLOW = '\033[33m'
+    RESET = '\033[0m'
+    title = f"{YELLOW}{title}{RESET}"
+    select = input(f"{title}(y/n): ")
     if select.lower().startswith("y"):
         return True
     return False
@@ -65,3 +68,26 @@ class ServerPropLoader:
         with open("server.properties", "w") as fp:
             for key in self.data.keys():
                 fp.write(key + "=" + str(self.data[key]) + "\n")
+
+
+def download(url, local_filepath):
+    headers = {
+        "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) "
+                      "Chrome/111.0.0.0 Safari/537.36"
+    }
+    with requests.get(url, stream=True, headers=headers) as r:
+        r.raise_for_status()
+        size = int(r.headers["Content-Length"])
+        chunk_size = 8192
+        with tqdm.tqdm(
+                unit="B",
+                unit_scale=True,
+                unit_divisor=1024,
+                miniters=1,
+                desc=f"下载文件 {local_filepath}",
+                total=size,
+        ) as pbar:
+            with open(local_filepath, "wb") as f:
+                for chunk in r.iter_content(chunk_size=chunk_size):
+                    f.write(chunk)
+                    pbar.update(len(chunk))
