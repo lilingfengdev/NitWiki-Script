@@ -34,6 +34,7 @@ if __name__ == "__main__":
     print("导出完成")
     print("应用配置")
     apply_config()
+    config_via()
     print("应用完毕")
     shutil.rmtree("temp")
     os.remove("temp.zip")
