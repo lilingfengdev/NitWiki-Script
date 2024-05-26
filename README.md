@@ -14,11 +14,10 @@
 * 简单配置MC服务器
 * 上传日志脚本
 * 自动配置反作弊
-* 安装JAVA
+* Geyser 自动配置
+* GitHUB下载加速(Moeey)
 
 ### 等待完成
 
-* Geyser 自动配置
-* GitHUB下载加速(Moeey)
 * 自动服务端选择脚本
   

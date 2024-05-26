@@ -23,6 +23,11 @@ def apply_config():
             print(f"成功应用配置{p}")
 
 
+@handler("plugins/ViaBackwards/config.yml")
+def config_via(via):
+    via["handle-pings-as-inv-acknowledgements"] = True
+
+
 if __name__ == "__main__":
     print("导出/下载配置")
     extract_zipfile()
