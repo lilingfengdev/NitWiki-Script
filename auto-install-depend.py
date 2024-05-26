@@ -1,14 +1,8 @@
-import os
-import urllib.request
 from concurrent.futures import ThreadPoolExecutor, wait
 from utils import *
 
 script_license()
 
-opener = urllib.request.build_opener()
-opener.addheaders = [
-    ('User-Agent', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101 Firefox/102.0')]
-urllib.request.install_opener(opener)
 pool = ThreadPoolExecutor(6)
 task = []
 
@@ -17,7 +11,10 @@ def download_task(name: str, url: str):
     def _download():
         print(f"开始下载{name}")
         try:
-            urllib.request.urlretrieve(url, os.path.join(os.getcwd(), "plugins", name + ".jar"))
+            response = requests.get(url)
+            response.raise_for_status()
+            with open(os.path.join(os.getcwd(), "plugins", name + ".jar"), 'wb') as f:
+                f.write(response.content)
         except Exception as e:
             print(f"下载错误{e},在下载{name}")
             print("重试")
@@ -49,6 +46,7 @@ def downloads():
                       "https://ci.lucko.me/job/spark/410/artifact/spark-bukkit/build/libs/spark-1.10.65-bukkit.jar")
     download_task("SkinRestorer", "https://ci.codemc.io/job/SkinsRestorer/job/SkinsRestorer/lastSuccessfulBuild"
                                   "/artifact/build/libs/SkinsRestorer.jar")
+    download_task("MiniMotd", "https://cdn.modrinth.com/data/16vhQOQN/versions/MXvCSw18/minimotd-bukkit-2.1.0.jar")
 
 
 if __name__ == "__main__":

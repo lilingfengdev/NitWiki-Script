@@ -16,7 +16,7 @@ def script_license():
 
 def handler(filename):
     def a(func):
-        def b():
+        def b(*args, **kwargs):
             print(f"开始配置{filename}")
             if not os.path.exists(filename):
                 print(f"{filename}不存在,跳过")
@@ -25,7 +25,7 @@ def handler(filename):
                 with open(filename, 'r+', encoding="utf8") as fp:
                     config = yaml.load(fp, Loader=Loader)
 
-                func(config)
+                func(config, *args, **kwargs)
                 with open(filename, 'w+', encoding="utf8") as fp:
                     yaml.dump(config, fp, Dumper=Dumper)
             except Exception as e:
