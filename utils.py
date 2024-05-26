@@ -1,5 +1,9 @@
-import sys, os
-import yaml, requests, tqdm
+import os
+import sys
+from urllib import parse
+import requests
+import tqdm
+import yaml
 
 try:
     from yaml import CLoader as Loader, CDumper as Dumper
@@ -76,6 +80,9 @@ def download(url, local_filepath):
                       "Chrome/111.0.0.0 Safari/537.36"
     }
     try:
+        p = parse.urlparse(url)
+        if p.netloc == "github.com":
+            url = "https://github.moeyy.xyz/" + url
         with requests.get(url, stream=True, headers=headers) as r:
             r.raise_for_status()
             size = int(r.headers["Content-Length"])
