@@ -4,6 +4,7 @@ from urllib import parse
 import requests
 import tqdm
 import yaml
+import traceback
 
 try:
     from yaml import CLoader as Loader, CDumper as Dumper
@@ -101,3 +102,12 @@ def download(url, local_filepath):
                         pbar.update(len(chunk))
     except Exception as e:
         print(f"下载错误:{e}")
+
+
+def exception_hook(exc_type, exc_value, tb):
+    print("\033[91m笨蛋脚本出现异常!!!\033[0m")
+    traceback.print_exception(exc_type, exc_value, tb)
+    exit_()
+
+
+sys.excepthook = exception_hook
