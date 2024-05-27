@@ -5,11 +5,7 @@ import requests
 import tqdm
 import yaml
 import traceback
-
-try:
-    from yaml import CLoader as Loader, CDumper as Dumper
-except ImportError:
-    from yaml import Loader, Dumper
+from yaml import CLoader as Loader, CDumper as Dumper
 
 
 def script_license():
@@ -19,7 +15,7 @@ def script_license():
     print("\033[91m未经许可,禁止用于商业用途\033[0m")
 
 
-def handler(filename):
+def handler(filename, loader=lambda fp: yaml.load(fp, Loader=Loader), dumper=yaml.dump):
     def a(func):
         def b(*args, **kwargs):
             print(f"开始配置{filename}")
@@ -28,11 +24,11 @@ def handler(filename):
                 return
             try:
                 with open(filename, 'r+', encoding="utf8") as fp:
-                    config = yaml.load(fp, Loader=Loader)
+                    config = loader(fp)
 
                 func(config, *args, **kwargs)
                 with open(filename, 'w+', encoding="utf8") as fp:
-                    yaml.dump(config, fp, Dumper=Dumper)
+                    dumper(config, fp)
             except Exception as e:
                 print(f"错误:{e}")
             else:

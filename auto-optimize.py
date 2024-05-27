@@ -1,5 +1,5 @@
 import os.path
-
+import rtoml
 from utils import *
 
 script_license()
@@ -232,6 +232,16 @@ def optimize_catserver(catserver):
     catserver["world"]["enableRealtime"] = True
 
 
+@handler("leaf_config/leaf_global_config.toml", rtoml.load, rtoml.dump)
+def optimize_leaf(leaf):
+    leaf["async"]["async_pathfinding"]["enabled"] = True
+    leaf["async"]["async_mob_spawning"]["enabled"] = True
+    leaf["performance"]["use_virtual_thread_for_async_scheduler"]["enabled"] = True
+    leaf["performance"]["use_faster_random_generator"]["enabled"] = True
+    leaf["performance"]["optimize_minecart"]["enabled"] = True
+    leaf["gameplay"]["disable_moved_wrongly_threshold"]["enabled"] = True
+
+
 if __name__ == "__main__":
     optimize_prop()
     optimize_bukkit()
@@ -244,4 +254,5 @@ if __name__ == "__main__":
     if not os.path.exists("purpur.yml"):
         print("Purpur尚未安装")
         print("为什么不试一下Purpur呢？")
+    optimize_leaf()
     exit_()
