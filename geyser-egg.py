@@ -52,7 +52,7 @@ def install_extend(auto_install=False):
     if auto_install or ask("安装皮肤修复(推荐)"):
         download("https://github.com/Camotoy/GeyserSkinManager/releases/download/1.7/GeyserSkinManager-Spigot.jar",
                  "plugins/GeyserSkinManager-Spigot.jar")
-    if auto_install or ask("安装箱子菜单修复"):
+    if not auto_install and ask("安装箱子菜单修复"):
         download("https://gitee.com/xi-bohan/BedrockChestUI/releases/download/BedrockChestUI/ChstomChest0.2.mcpack",
                  "plugins/Geyser-Spigot/packs/ChstomChest0.2.mcpack")
         download("https://gitee.com/xi-bohan/BedrockChestUI/releases/download/BedrockChestUI/BedrockChestUI-1.0.5.jar",
@@ -67,7 +67,7 @@ def install_extend(auto_install=False):
                  "/BetterBedrockThirdPerson-1.0-SNAPSHOT.jar", "plugins/BetterBedrockThirdPerson-1.0-SNAPSHOT.jar")
     if auto_install or ask("安装Luckperms基岩版支持(推荐)"):
         download("https://qcymc.cloud/f/mZLhW/[MineBBS]-LuckBedrock-1.1.jar", "plugins/LuckBedrock-1.1.jar")
-    if auto_install or ask("安装第三方披风/耳朵支持"):
+    if not auto_install and ask("安装第三方披风/耳朵支持"):
         download(
             "https://download.geysermc.org/v2/projects/thirdpartycosmetics/versions/latest/builds/latest/downloads"
             "/thirdpartycosmetics",
