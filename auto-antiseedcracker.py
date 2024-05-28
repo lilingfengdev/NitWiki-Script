@@ -11,12 +11,9 @@ def config_paper_world(paper):
     paper["feature-seeds"]["generate-random-seeds-for-all"] = True
 
 
-def config_leaf():
-    with open("leaf_config/leaf_global_config.toml", "r+") as f:
-        t = rtoml.load(f)
-        t["misc"]["use_secure_seed"]["enabled"] = True
-    with open("leaf_config/leaf_global_config.toml", "w+") as f:
-        rtoml.dump(t, f, pretty=True)
+@handler(r'config/leaf_global_config.toml', rtoml.load, rtoml.dump)
+def config_leaf(leaf):
+    leaf["misc"]["use_secure_seed"]["enabled"] = True
 
 
 def download_antiseedcracker():

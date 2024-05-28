@@ -167,7 +167,7 @@ def optimize_paper_world(paper):
     paper["collisions"]["fix-climbing-bypassing-cramming-rule"] = True
     paper["misc"]["update-pathfinding-on-block-update"] = False
     paper["misc"]["redstone-implementation"] = "ALTERNATE_CURRENT"
-    if not os.path.exists("pufferfish.yml"):
+    if not (os.path.exists("pufferfish.yml") and os.path.exists("leaf_config/leaf_global_config.toml")):
         paper["tick-rates"]["behavior"] = {
             "villager": {
                 "validatenearbypoi": 60,
@@ -194,6 +194,11 @@ def optimize_paper_world(paper):
         "loot-tables": True,
         "villager-trade": True
     }
+
+
+@handler('config/gale-world-defaults.yml')
+def optimize_gale(gale):
+    gale["small-optimizations"]["save-fireworks"] = False
 
 
 @handler('pufferfish.yml')
@@ -236,9 +241,15 @@ def optimize_catserver(catserver):
 def optimize_leaf(leaf):
     leaf["async"]["async_pathfinding"]["enabled"] = True
     leaf["async"]["async_mob_spawning"]["enabled"] = True
-    leaf["performance"]["use_virtual_thread_for_async_scheduler"]["enabled"] = True
+    if ask("开启异步实体追踪(会破坏NPC插件)(目前不建议)"):
+        leaf["async"]["async_entity_tracker"]["enabled"] = True
+    if ask("使用的是Java 21+"):
+        leaf["performance"]["use_virtual_thread_for_async_scheduler"]["enabled"] = True
     leaf["performance"]["use_faster_random_generator"]["enabled"] = True
     leaf["performance"]["optimize_minecart"]["enabled"] = True
+    dab = leaf["performance"]["dab"]
+    dab["max-tick-freq"] = 20
+    dab["activation-dist-mod"] = 7
     leaf["gameplay"]["disable_moved_wrongly_threshold"]["enabled"] = True
 
 
@@ -250,6 +261,7 @@ if __name__ == "__main__":
     optimize_paper_world()
     optimize_pufferfish()
     optimize_purpur()
+    optimize_gale()
     optimize_catserver()
     if not os.path.exists("purpur.yml"):
         print("Purpur尚未安装")
