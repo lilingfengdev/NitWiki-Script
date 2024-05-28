@@ -18,12 +18,8 @@ def config_leaf(leaf):
 
 def download_antiseedcracker():
     print("开始下载AntiSeedCracker")
-    opener = urllib.request.build_opener()
-    opener.addheaders = [
-        ('User-Agent', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101 Firefox/102.0')]
-    urllib.request.install_opener(opener)
-    urllib.request.urlretrieve(r"https://qcymc.cloud/f/L91iQ/AntiSeedCracker-1.2.0.jar",
-                               "plugins/AntiSeedCracker-1.2.0.jar")
+    download(r"https://qcymc.cloud/f/L91iQ/AntiSeedCracker-1.2.0.jar",
+             "plugins/AntiSeedCracker-1.2.0.jar")
     print("下载完成")
 
 
