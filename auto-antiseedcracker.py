@@ -1,6 +1,5 @@
 from utils import *
 import rtoml
-import urllib.request
 
 script_license()
 print("开始配置!")

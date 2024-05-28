@@ -17,10 +17,11 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v3
         with:
-          python-version: "3.8"
-          architecture: 'x86'
+          python-version: "3.11"
       - name: Install Dependencies
-        run: pip install pyyaml install-jdk tqdm p_tqdm psutil rtoml requests pyinstaller pyarmor
+        run: pip install pyyaml install-jdk tqdm psutil requests pyinstaller pyarmor
+      - name: Install RToml
+        run: pip install rtoml-0.10.0-cp311-none-win_amd64.whl
       - name: Generate Bundle
         run: |
           python generate-bundle.py
