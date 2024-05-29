@@ -15,11 +15,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Set up Python
-        run: ./install-python.bat
+        uses: actions/setup-python@v3
+        with:
+            python-version: "3.11"
       - name: Install Dependencies
-        run: pip install pyyaml install-jdk tqdm psutil requests pyinstaller pyarmor
-      - name: Install RToml
-        run: pip install rtoml-0.10.0-cp311-none-win_amd64.whl
+        run: pip install pyyaml install-jdk tqdm psutil requests pyinstaller pyarmor rtoml-0.10.0-cp311-none-win_amd64.whl
       - name: Generate Bundle
         run: |
           python generate-bundle.py
@@ -27,7 +27,7 @@ jobs:
         uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: latest
+          automatic_release_tag: new
           prerelease: true
           files: |
             dist/*.exe
