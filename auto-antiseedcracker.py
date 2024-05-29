@@ -1,3 +1,5 @@
+import os.path
+
 from utils import *
 import rtoml
 
@@ -12,7 +14,10 @@ def config_paper_world(paper):
 
 @handler(r'config/leaf_global_config.toml', rtoml.load, rtoml.dump)
 def config_leaf(leaf):
-    leaf["misc"]["use_secure_seed"]["enabled"] = True
+    if os.path.exists("world"):
+        print("你需要删除原有存档才可以使用")
+    else:
+        leaf["misc"]["use_secure_seed"]["enabled"] = True
 
 
 def download_antiseedcracker():

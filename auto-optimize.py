@@ -167,7 +167,7 @@ def optimize_paper_world(paper):
     paper["collisions"]["fix-climbing-bypassing-cramming-rule"] = True
     paper["misc"]["update-pathfinding-on-block-update"] = False
     paper["misc"]["redstone-implementation"] = "ALTERNATE_CURRENT"
-    if not (os.path.exists("pufferfish.yml") and os.path.exists("leaf_config/leaf_global_config.toml")):
+    if not (os.path.exists("pufferfish.yml") or os.path.exists("leaf_config/leaf_global_config.toml")):
         paper["tick-rates"]["behavior"] = {
             "villager": {
                 "validatenearbypoi": 60,
