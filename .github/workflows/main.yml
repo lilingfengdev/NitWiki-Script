@@ -19,7 +19,7 @@ jobs:
         with:
             python-version: "3.11"
       - name: Install Dependencies
-        run: pip install pyyaml install-jdk tqdm psutil requests pyinstaller pyarmor rtoml-0.10.0-cp311-none-win_amd64.whl
+        run: pip install pyyaml install-jdk tqdm psutil requests pyinstaller rtoml-0.10.0-cp311-none-win_amd64.whl
       - name: Generate Bundle
         run: |
           python generate-bundle.py
