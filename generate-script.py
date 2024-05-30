@@ -1,6 +1,7 @@
 from textwrap import dedent as _
 from utils import *
 from psutil import virtual_memory
+import platform
 
 
 script_license()
@@ -94,28 +95,53 @@ def generate_command(server: str, meta: VersionMeta):
 
 
 def generate_batch(command, restart):
-    with open("start.bat", "w", encoding="utf8") as fp:
-        if restart:
-            fp.write(_(f"""
-                @echo off
-                chcp 65001
-                :start
-                echo 开始启动MC服务器
-                {command}
-                echo MC服务器已关闭
-                echo 服务器正在重新启动..。
-                echo 按 CTRL + C 停止。
-                goto :start
-            """))
-        else:
-            fp.write(_(f"""
-                @echo off
-                chcp 65001
-                echo 开始启动MC服务器
-                {command}
-                echo MC服务器已关闭
-                pause
-            """))
+    os_name = platform.system()
+    if os_name == "Windows":
+        with open("start.bat", "w", encoding="utf8") as fp:
+            if restart:
+                fp.write(_(f"""
+                    @echo off
+                    chcp 65001
+                    :start
+                    echo 开始启动MC服务器
+                    {command}
+                    echo MC服务器已关闭
+                    echo 服务器正在重新启动..。
+                    echo 按 CTRL + C 停止。
+                    goto :start
+                """))
+            else:
+                fp.write(_(f"""
+                    @echo off
+                    chcp 65001
+                    echo 开始启动MC服务器
+                    {command}
+                    echo MC服务器已关闭
+                    pause
+                """))
+    elif os_name == "Linux":
+        with open("start.sh", "w", encoding="utf8") as fp:
+            if restart:
+                fp.write(_(f"""
+                    #!/bin/bash
+                    echo "开始启动MC服务器"
+                    {command}
+                    echo "MC服务器已关闭"
+                    while true; do
+                        echo "按 CTRL + C 停止。"
+                        {command}
+                        sleep 1
+                    done
+                """))
+            else:
+                fp.write(_(f"""
+                    #!/bin/bash
+                    echo "开始启动MC服务器"
+                    {command}
+                    echo "MC服务器已关闭"
+                """))
+    else:
+        raise OSError("Unsupported operating system")
 
 
 if __name__ == "__main__":
