@@ -30,4 +30,4 @@ jobs:
           automatic_release_tag: latest
           prerelease: true
           files: |
-            dist/*.exe
+            build/*/*.exe
