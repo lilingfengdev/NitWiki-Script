@@ -16,7 +16,7 @@ with open("utils.py", "r", encoding="utf8") as util:
 for file in os.listdir(os.getcwd()):
     if file != "utils.py" and file != "generate-bundle.py" and file.endswith(".py") and not os.path.isdir(file):
         print(f"build {file}", flush=True)
-        PyInstaller.__main__.run(["-F", file, "--optimize", "2"])
+        PyInstaller.__main__.run(["-F", file, "--optimize", "2", "-i", "favicon.ico"])
 
 # 傻逼
 # 狗屎代碼
