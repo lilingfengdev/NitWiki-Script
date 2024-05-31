@@ -47,6 +47,7 @@ def downloads():
     download_task("SkinRestorer", "https://ci.codemc.io/job/SkinsRestorer/job/SkinsRestorer/lastSuccessfulBuild"
                                   "/artifact/build/libs/SkinsRestorer.jar")
     download_task("MiniMotd", "https://cdn.modrinth.com/data/16vhQOQN/versions/MXvCSw18/minimotd-bukkit-2.1.0.jar")
+    download_task("TrChat", "https://github.com/TrPlugins/TrChat/releases/download/v2.1.0/TrChat-2.1.0.jar")
 
 
 if __name__ == "__main__":
