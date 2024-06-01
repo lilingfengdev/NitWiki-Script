@@ -5,7 +5,10 @@ import requests
 import tqdm
 import yaml
 import traceback
-from yaml import CLoader as Loader, CDumper as Dumper
+from yaml import CLoader as Loader
+import warnings
+
+warnings.filterwarnings("ignore")
 
 
 def script_license():
