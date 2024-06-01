@@ -14,6 +14,7 @@ def main():
     setup_geyser(auto_install)
     setup_floodgate(auto_install)
     install_extend(auto_install)
+    setup_plugin(auto_install)
     print("已完成")
     exit_()
 
@@ -37,7 +38,8 @@ def setup_geyser(geyser, auto_install=False):
 
 @handler("plugins/floodgate/config.yml")
 def setup_floodgate(floodgate, auto_install=False):
-    floodgate["username-prefix"] = "BE_" if auto_install else input("\033[33m基岩版玩家用户名前缀(默认为.,推荐BE_):\033[0m")
+    floodgate["username-prefix"] = "BE_" if auto_install else input(
+        "\033[33m基岩版玩家用户名前缀(默认为.,推荐BE_):\033[0m")
 
 
 def install_extend(auto_install=False):
@@ -75,6 +77,30 @@ def install_extend(auto_install=False):
     if auto_install or ask("安装Geyser自动更新"):
         download("https://ci.kejonamc.dev/job/GeyserUpdater/job/main/18/artifact/target/GeyserUpdater-1.6.4.jar",
                  "plugins/GeyserUpdater-1.6.4.jar")
+
+
+def setup_plugin(auto_install=False):
+    if os.path.exists("plugins/Slimefun") and ask("安装Slimefun材质兼容(需要Slimefun Resource Pack)"):
+        download("https://qcymc.cloud/f/QWRHo/Slimefun.mcpack", "plugins/Geyser-Spigot/packs/Slimefun.mcpack")
+        download("https://qcymc.cloud/f/R6DT5/RYSurvival-SlimefunMapping.jar", "plugins/Geyser-Spigot/extensions"
+                                                                               "/RYSurvival-SlimefunMapping.jar")
+    if os.path.exists("plugins/Residence") and (auto_install or ask("安装Residence基岩版菜单兼容")):
+        download("https://github.com/RenYuan-MC/ResidenceForm/releases/download/dev/ResidenceForm.jar",
+                 "plugins/ResidenceForm.jar")
+    if (os.path.exists("plugins/QuickShop-Hikari") or os.path.exists("plugins/QuickShop")) and (
+            auto_install or ask("安装QuickShop基岩版菜单兼容")):
+        download("https://github.com/RenYuan-MC/QuickShopForm/releases/download/dev/QuickShopForm.jar",
+                 "plugins/QuickShopForm.jar")
+    if auto_install or ask("安装Geyser扩展菜单(BedrockPlayerSupport)"):
+        download("https://github.com/DongShaoNB/BedrockPlayerSupport/releases/download/v1.8.3/BedrockPlayerSupport-1"
+                 ".8.3.jar", "plugins/BedrockPlayerSupport-1.8.3.jar")
+    if os.path.exists("plugins/Skript") and (auto_install or ask("安装Skript基岩版兼容")):
+        download("https://github.com/kejonaMC/floodgate-skript/releases/download/v2.1/floodgate-skript-2.1.jar",
+                 "plugins/floodgate-skript-2.1.jar")
+
+    if ask("安装基岩版菜单制作插件"):
+        download("https://ci.kejonamc.dev/job/CrossplatForms/job/main/lastSuccessfulBuild/artifact/spigot/build/libs"
+                 "/CrossplatForms-Spigot.jar", "plugins/CrossplatForms-Spigot.jar")
 
 
 if __name__ == "__main__":
