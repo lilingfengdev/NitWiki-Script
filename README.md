@@ -20,4 +20,6 @@
 ### 等待完成
 
 * 自动服务端选择脚本
+* https://github.com/GaleMC/Gale/wiki/Configuration Gale优化
+* Via自动配置
   
