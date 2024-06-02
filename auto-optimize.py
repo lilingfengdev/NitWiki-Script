@@ -261,12 +261,12 @@ def optimize_leaf(leaf):
         leaf["async"]["async_entity_tracker"]["enabled"] = True
     if ask("使用的是Java 21+"):
         leaf["performance"]["use_virtual_thread_for_async_scheduler"]["enabled"] = True
-    leaf["performance"]["use_faster_random_generator"]["enabled"] = True
     leaf["performance"]["optimize_minecart"]["enabled"] = True
     dab = leaf["performance"]["dab"]
     dab["max-tick-freq"] = 20
     dab["activation-dist-mod"] = 7
     leaf["gameplay"]["disable_moved_wrongly_threshold"]["enabled"] = True
+    leaf["performance"]["use_faster_random_generator"]["enabled"] = True
 
 
 if __name__ == "__main__":
