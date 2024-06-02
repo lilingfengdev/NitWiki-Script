@@ -188,6 +188,7 @@ def optimize_paper_world(paper):
     paper["tick-rates"]["mob-spawner"] = 2
     paper["tick-rates"]["grass-spread"] = 4
     paper["tick-rates"]["container-update"] = 1
+    paper["tick-rates"]["wet-farmland"] = 2
     paper["environment"]["optimize-explosions"] = True
     paper["environment"]["treasure-maps"]["enabled"] = False
     paper["environment"]["treasure-maps"]["find-already-discovered"] = {
@@ -197,8 +198,23 @@ def optimize_paper_world(paper):
 
 
 @handler('config/gale-world-defaults.yml')
-def optimize_gale(gale):
+def optimize_gale_world(gale):
+    gale["small-optimizations"]["max-projectile-chunk-loads"]["per-tick"] = 2
+    gale["small-optimizations"]["max-projectile-chunk-loads"]["per-projectile"][
+        "reset-movement-after-reach-limit"] = True
+    gale["small-optimizations"]["reduced-intervals"]["acquire-poi-for-stuck-entity"] = 200
+    gale["small-optimizations"]["reduced-intervals"]["check-nearby-item"]["hopper"]["interval"] = 50
+    gale["small-optimizations"]["reduced-intervals"]["check-nearby-item"]["hopper"]["minecart"]["temporary-immunity"][
+        "duration"] = 75
+    gale["small-optimizations"]["reduced-intervals"]["check-nearby-item"]["hopper"]["minecart"]["temporary-immunity"][
+        "nearby-item-max-age"] = 600
+    gale["gameplay-mechanics"]["arrow-movement-resets-despawn-counter"] = False
     gale["small-optimizations"]["save-fireworks"] = False
+
+
+@handler('config/gale-global.yml')
+def optimize_gale_global(gale):
+    gale["small-optimizations"]["reduced-intervals"]["update-entity-line-of-sight"] = 10
 
 
 @handler('pufferfish.yml')
@@ -261,7 +277,8 @@ if __name__ == "__main__":
     optimize_paper_world()
     optimize_pufferfish()
     optimize_purpur()
-    optimize_gale()
+    optimize_gale_world()
+    optimize_gale_global()
     optimize_catserver()
     if not os.path.exists("purpur.yml"):
         print("Purpur尚未安装")
