@@ -59,19 +59,19 @@ def exit_():
 
 
 class ServerPropLoader:
+    @staticmethod
+    def load(fp):
+        data = {}
+        for line in fp.readlines():
+            if not line.startswith("#"):
+                k, v = line.split("=", 1)
+                data[k] = v.strip()
+        return data
 
-    def __init__(self):
-        self.data = {}
-        with open("server.properties", "r") as fp:
-            for line in fp.readlines():
-                if not line.startswith("#"):
-                    k, v = line.split("=", 1)
-                    self.data[k] = v.strip()
-
-    def save(self):
-        with open("server.properties", "w") as fp:
-            for key in self.data.keys():
-                fp.write(key + "=" + str(self.data[key]) + "\n")
+    @staticmethod
+    def dump(data, fp):
+        for k, v in data.items():
+            fp.write(k + "=" + str(v) + "\n")
 
 
 def download(url, local_filepath):

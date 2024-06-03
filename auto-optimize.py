@@ -7,13 +7,12 @@ script_license()
 print("开始优化!")
 
 
-def optimize_prop():
-    prop = ServerPropLoader()
-    prop.data["view-distance"] = 7
-    prop.data["allow-flight"] = "true"
-    prop.data["use-native-transport"] = "true"
-    prop.data["simulation-distance"] = 4
-    prop.save()
+@handler('server.properties', ServerPropLoader.load, ServerPropLoader.dump)
+def optimize_prop(properties):
+    properties["view-distance"] = 7
+    properties["allow-flight"] = "true"
+    properties["use-native-transport"] = "true"
+    properties["simulation-distance"] = 4
 
 
 @handler('bukkit.yml')
@@ -268,7 +267,6 @@ if __name__ == "__main__":
     optimize_purpur()
     optimize_gale_world()
     optimize_gale_global()
-    optimize_catserver()
     if not os.path.exists("purpur.yml"):
         print("Purpur尚未安装")
         print("为什么不试一下Purpur呢？")
