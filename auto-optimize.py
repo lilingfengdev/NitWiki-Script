@@ -244,21 +244,10 @@ def optimize_purpur(purpur):
     purpur["world-settings"]["default"]["gameplay-mechanics"]["player"]["teleport-if-outside-border"] = True
 
 
-@handler('catserver.yml')
-def optimize_catserver(catserver):
-    catserver["world"]["keepSpawnInMemory"] = False
-    catserver["world"]["enableSkipEntityTick"] = True
-    catserver["world"]["enableSkipTileEntityTick"] = True
-    catserver["world"]["worldGenMaxTick"] = 10
-    catserver["world"]["enableRealtime"] = True
-
-
 @handler("leaf_config/leaf_global_config.toml", rtoml.load, rtoml.dump)
 def optimize_leaf(leaf):
     leaf["async"]["async_pathfinding"]["enabled"] = True
     leaf["async"]["async_mob_spawning"]["enabled"] = True
-    if ask("开启异步实体追踪(会破坏NPC插件)(目前不建议)"):
-        leaf["async"]["async_entity_tracker"]["enabled"] = True
     if ask("使用的是Java 21+"):
         leaf["performance"]["use_virtual_thread_for_async_scheduler"]["enabled"] = True
     leaf["performance"]["optimize_minecart"]["enabled"] = True
