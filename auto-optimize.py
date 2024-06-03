@@ -1,6 +1,9 @@
 import os.path
-import rtoml
 from utils import *
+try:
+    import tomllib as toml
+except ModuleNotFoundError:
+    import rtoml as toml
 
 script_license()
 
@@ -243,7 +246,7 @@ def optimize_purpur(purpur):
     purpur["world-settings"]["default"]["gameplay-mechanics"]["player"]["teleport-if-outside-border"] = True
 
 
-@handler("leaf_config/leaf_global_config.toml", rtoml.load, rtoml.dump)
+@handler("leaf_config/leaf_global_config.toml", toml.load, toml.dump)
 def optimize_leaf(leaf):
     leaf["async"]["async_pathfinding"]["enabled"] = True
     leaf["async"]["async_mob_spawning"]["enabled"] = True
