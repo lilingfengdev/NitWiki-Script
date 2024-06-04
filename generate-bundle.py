@@ -20,7 +20,6 @@ for file in os.listdir(os.getcwd()):
                 "hashlib,bz2,lzma", ]
         if platform.system() != 'Windows':
             flag.append("--strip")
-            flag.append("--no-upx")
         PyInstaller.__main__.run(flag)
 # 傻逼
 # 狗屎代碼
