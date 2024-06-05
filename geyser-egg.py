@@ -29,8 +29,8 @@ def install_geyser():
 
 @handler("plugins/Geyser-Spigot/config.yml")
 def setup_geyser(geyser, auto_install=False):
-    prop = ServerPropLoader()
-    server_port = int(prop.data["port"])
+    prop = ServerPropLoader.load(open("server.properties", "r"))
+    server_port = int(prop["port"])
     geyser["remote"]["port"] = server_port
     if auto_install or ask("允许Geyser玩家在地狱上层(y>128)放置方块"):
         geyser["above-bedrock-nether-building"] = True
