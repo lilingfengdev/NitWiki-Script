@@ -104,6 +104,19 @@ class Mohist(SelectNode):
         return f"https://ci.codemc.io/job/MohistMC/job/Mohist-{ver}/lastCompletedBuild/artifact/{path}"
 
 
+class CardBoard(SelectNode):
+    def __init__(self):
+        super().__init__("Fabric混合", {})
+
+    def get_version_list(self):
+        vers = json.loads(requests.get("https://api.modrinth.com/v2/project/cardboard/version").content)
+        for ver in vers:
+            for game in ver["game_versions"]:
+                if game not in self.map.keys():
+                    self.map[game] = ver["files"][0]["url"]
+        return list(self.map.keys())
+
+
 root = SelectTree("")
 
 # 插件
@@ -135,11 +148,11 @@ forge1122 = SkipSelectNode("MC 版本 1.12.2", "https://catserver.moe/download/u
 
 forge.children = [forge1710, forge1122, Mohist()]
 
-fabric = SelectTree("Fabric混合")
+mix.children = [forge, CardBoard()]
 
-mix.children = [forge, fabric]
+mod = SelectTree("mod服(不要选择,目前不支持自动下载）")
 
-root.children = [plugin, mix]
+root.children = [plugin, mix, mod]
 
 while True:
     if isinstance(root, SelectTree):
@@ -158,4 +171,8 @@ while True:
         i = input("\033[33m你的选择：\033[0m")
         url = root.get_url_by_version(i)
         break
-print(url)
+print(f"下载链接:{url}")
+if ask("自动下载?"):
+    download(url, "server.jar")
+    print("下载完成")
+exit_()
