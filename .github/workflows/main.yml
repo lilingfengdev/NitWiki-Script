@@ -23,7 +23,7 @@ jobs:
         with:
             python-version: "3.11"
       - name: Install Dependencies
-        run: pip install pyyaml install-jdk tqdm psutil requests pyinstaller
+        run: pip install pyyaml install-jdk tqdm psutil requests pygithub pyinstaller
       - name: Generate Bundle
         run: |
           python generate-bundle.py
