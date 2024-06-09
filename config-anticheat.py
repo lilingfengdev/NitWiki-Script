@@ -1,9 +1,6 @@
-import io
-import os
 
 from utils import *
 import zipfile, shutil
-import urllib.request
 
 script_license()
 

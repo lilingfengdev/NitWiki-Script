@@ -1,5 +1,3 @@
-from urllib import request
-import urllib.parse
 from utils import *
 import json
 
@@ -11,8 +9,7 @@ def update_log(content):
     data = {
         "content": content
     }
-    datas = urllib.parse.urlencode(data).encode('utf-8')
-    res = json.loads(request.urlopen(request.Request(api, data=datas)).read().decode('utf-8'))
+    res = json.loads(requests.post(api, data=data).content)
     if res["success"]:
         return res["url"]
     else:
