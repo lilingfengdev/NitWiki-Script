@@ -23,7 +23,11 @@ jobs:
         with:
             python-version: "3.11"
       - name: Install Dependencies
-        run: pip install pyyaml install-jdk tqdm psutil requests pygithub pyinstaller
+        run: |
+          if [ "${{ matrix.os }}" == "windows-latest" ]; then
+            python -m pip install pyyaml install-jdk tqdm psutil requests pygithub rtoml-0.10.0-cp311-none-win_amd64.whl pyinstaller
+          else
+            python -m pip install pyyaml install-jdk tqdm psutil requests pygithub rtoml pyinstaller
       - name: Generate Bundle
         run: |
           python generate-bundle.py

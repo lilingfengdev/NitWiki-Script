@@ -1,10 +1,7 @@
 import os.path
 
 from utils import *
-try:
-    import tomllib as toml
-except ModuleNotFoundError:
-    import rtoml as toml
+import rtoml as toml
 
 script_license()
 print("开始配置!")
