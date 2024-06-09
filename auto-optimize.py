@@ -6,6 +6,8 @@ script_license()
 
 print("开始优化!")
 
+danger = ask("是否开启危险优化(会严重影响玩家体验)?")
+
 
 @handler('server.properties', ServerPropLoader.load, ServerPropLoader.dump)
 def optimize_prop(properties):
@@ -162,6 +164,8 @@ def optimize_paper_world(paper):
     }
     paper["entities"]["spawning"]["non-player-arrow-despawn-rate"] = 20
     paper["entities"]["spawning"]["creative-arrow-despawn-rate"] = 20
+    if not danger:
+        paper["entities"]["behavior"]["spawner-nerfed-mobs-should-jump"] = True
     paper["collisions"]["max-entity-collisions"] = 2
     paper["collisions"]["fix-climbing-bypassing-cramming-rule"] = True
     paper["misc"]["update-pathfinding-on-block-update"] = False
@@ -189,7 +193,9 @@ def optimize_paper_world(paper):
     paper["tick-rates"]["container-update"] = 1
     paper["tick-rates"]["wet-farmland"] = 2
     paper["environment"]["optimize-explosions"] = True
-    paper["environment"]["treasure-maps"]["enabled"] = False
+    if danger:
+        paper["environment"]["treasure-maps"]["enabled"] = False
+        paper["environment"]["nether-ceiling-void-damage-height"] = 127
     paper["environment"]["treasure-maps"]["find-already-discovered"] = {
         "loot-tables": True,
         "villager-trade": True
@@ -201,6 +207,9 @@ def optimize_gale_world(gale):
     gale["small-optimizations"]["max-projectile-chunk-loads"]["per-tick"] = 2
     gale["small-optimizations"]["max-projectile-chunk-loads"]["per-projectile"][
         "reset-movement-after-reach-limit"] = True
+    if danger:
+        gale["small-optimizations"]["max-projectile-chunk-loads"]["per-projectile"][
+            "remove-from-world-after-reach-limit"] = True
     gale["small-optimizations"]["reduced-intervals"]["acquire-poi-for-stuck-entity"] = 200
     gale["small-optimizations"]["reduced-intervals"]["check-nearby-item"]["hopper"]["interval"] = 50
     gale["small-optimizations"]["reduced-intervals"]["check-nearby-item"]["hopper"]["minecart"]["temporary-immunity"][
@@ -233,12 +242,15 @@ def optimize_pufferfish(pufferfish):
 def optimize_purpur(purpur):
     purpur["settings"]["use-alternate-keepalive"] = True
     purpur["world-settings"]["default"]["mobs"]["zombie"]["aggressive-towards-villager-when-lagging"] = False
-    purpur["world-settings"]["default"]["mobs"]["villager"]["lobotomize"]["enabled"] = True
-    purpur["world-settings"]["default"]["mobs"]["villager"]["lobotomize"]["search-radius"] = {
-        "acquire-poi": 16,
-        "nearest-bed-sensor": 16
-    }
-    purpur["world-settings"]["default"]["mobs"]["dolphin"]["disable-treasure-searching"] = True
+    if not danger:
+        purpur["settings"]["lagging-threshold"] = 18
+    if danger:
+        purpur["world-settings"]["default"]["mobs"]["villager"]["lobotomize"]["enabled"] = True
+        purpur["world-settings"]["default"]["mobs"]["villager"]["lobotomize"]["search-radius"] = {
+            "acquire-poi": 16,
+            "nearest-bed-sensor": 16
+        }
+        purpur["world-settings"]["default"]["mobs"]["dolphin"]["disable-treasure-searching"] = True
     purpur["world-settings"]["default"]["gameplay-mechanics"]["entities-can-use-portals"] = False
     purpur["world-settings"]["default"]["gameplay-mechanics"]["player"]["teleport-if-outside-border"] = True
 
