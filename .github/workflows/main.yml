@@ -22,13 +22,7 @@ jobs:
         uses: actions/setup-python@v3
         with:
             python-version: "3.11"
-      - name: Install Dependencies
-        run: |
-          if [ ${{ matrix.os }} == "windows-latest" ]; then
-            python3 -m pip install pyyaml install-jdk tqdm psutil requests pygithub rtoml-0.10.0-cp311-none-win_amd64.whl pyinstaller
-          else
-            python3 -m pip install pyyaml install-jdk tqdm psutil requests pygithub rtoml pyinstaller
-      - name: Generate Bundle
+      - name: Install Dependencies and Generate Bundle
         run: |
           python generate-bundle.py
       - name: Auto release

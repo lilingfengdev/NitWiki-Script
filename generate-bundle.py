@@ -2,6 +2,13 @@ import os
 import shutil
 import urllib.request
 import zipfile
+import platform
+if platform.system() == 'Windows':
+    os.system("python3 -m pip install pyyaml install-jdk tqdm psutil requests pygithub "
+              "rtoml-0.10.0-cp311-none-win_amd64.whl pyinstaller")
+else:
+    os.system("python3 -m pip install pyyaml install-jdk tqdm psutil requests pygithub rtoml pyinstaller")
+
 
 import PyInstaller.__main__
 import platform
