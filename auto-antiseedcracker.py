@@ -12,7 +12,7 @@ def config_paper_world(paper):
     paper["feature-seeds"]["generate-random-seeds-for-all"] = True
 
 
-@handler(r'config/leaf_global_config.toml', toml.load, toml.dump)
+@handler(r'leaf_config/leaf_global_config.toml', toml.load, toml.dump)
 def config_leaf(leaf):
     if os.path.exists("world"):
         print("你需要删除原有存档才可以使用")
