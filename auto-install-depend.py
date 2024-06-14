@@ -38,8 +38,6 @@ def downloads():
     download_task("EssentialsX", "https://qcymc.cloud/f/XBSO/EssentialsX-2.21.0-dev+81-cde7184.jar")
     download_task("Multiverse-Core", "https://ci.onarandombox.com/job/Multiverse-Core/870/artifact/target/Multiverse"
                                      "-Core-4.3.2-SNAPSHOT.jar")
-    download_task("ViaVersion", "https://qcymc.cloud/f/VjHg/ViaVersion-4.10.1-SNAPSHOT.jar")
-    download_task("ViaBackwards", "https://qcymc.cloud/f/W9ID/ViaBackwards-4.10.1-SNAPSHOT.jar")
     download_task("AuthMe", "https://qcymc.cloud/f/RDF5/AuthMe-5.6.0-FORK-Universal.jar")
     if not os.path.exists("plugins/spark"):
         download_task("spark",
