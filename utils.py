@@ -7,8 +7,10 @@ import yaml
 import traceback
 from yaml import CLoader as Loader
 import warnings
+import colorama
 
 warnings.filterwarnings("ignore")
+colorama.init(autoreset=True)
 
 
 def script_license():
