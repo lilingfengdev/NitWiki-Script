@@ -19,6 +19,9 @@ class SelectNode:
     def get_url_by_version(self, ver):
         return self.map[ver]
 
+    def download(self, version):
+        return lambda: download(self.get_url_by_version(version), "server.jar")
+
 
 class SkipSelectNode(SelectNode):
     def __init__(self, desc, url):
@@ -27,6 +30,9 @@ class SkipSelectNode(SelectNode):
 
     def get_url(self):
         return self.url
+
+    def download(self, version=""):
+        return lambda: download(self.get_url(), "server.jar")
 
 
 class SelectTree:
@@ -161,7 +167,7 @@ while True:
         i = int(input("\033[33m你的选择：\033[0m"))
         root = root.children[i - 1]
     elif isinstance(root, SkipSelectNode):
-        url = root.get_url()
+        d = root.download()
         break
     elif isinstance(root, SelectNode):
         print("\033c\033[3J", end='')
@@ -169,10 +175,10 @@ while True:
         for ver in root.get_version_list():
             print(f"\033[96m{ver}\033[0m")
         i = input("\033[33m你的选择：\033[0m")
-        url = root.get_url_by_version(i)
+        d = root.download(i)
         break
-print(f"下载链接:{url}")
+
 if ask("自动下载?"):
-    download(url, "server.jar")
+    d()
     print("下载完成")
 exit_()
