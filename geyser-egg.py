@@ -45,7 +45,7 @@ def setup_floodgate(floodgate, auto_install=False):
 def install_extend(auto_install=False):
     if auto_install or ask("安装GeyserOptionalPack(推荐)"):
         download("https://download.geysermc.org/v2/projects/geyseroptionalpack/versions/latest/builds/latest"
-                 "/downloads/geyseroptionalpack", "plugins/Geyser-Spigot/packs/geyseroptionalpack.mcpack")
+                 "/downloads/geyseroptionalpack", "plugins/Geyser-Spigot/packs/GeyserOptionalPack.mcpack")
     if auto_install or ask("安装Geyser行为修复(推荐)"):
         download("https://github.com/GeyserMC/Hurricane/releases/download/2.0-SNAPSHOT-1/Hurricane.jar",
                  "plugins/Hurricane.jar")
@@ -77,6 +77,9 @@ def install_extend(auto_install=False):
     if auto_install or ask("安装Geyser自动更新"):
         download("https://ci.kejonamc.dev/job/GeyserUpdater/job/main/18/artifact/target/GeyserUpdater-1.6.4.jar",
                  "plugins/GeyserUpdater-1.6.4.jar")
+    if not auto_install and ask("安装Geyser扩展(1.20.6+)"):
+        download("https://github.com/GeyserExtras/GeyserExtras/releases/download/1.20.6-v1.1.1/GeyserExtras.jar",
+                 "plugins/GeyserExtras.jar")
 
 
 def setup_plugin(auto_install=False):
@@ -92,8 +95,8 @@ def setup_plugin(auto_install=False):
         download("https://github.com/RenYuan-MC/QuickShopForm/releases/download/dev/QuickShopForm.jar",
                  "plugins/QuickShopForm.jar")
     if auto_install or ask("安装Geyser扩展菜单(BedrockPlayerSupport)"):
-        download("https://github.com/DongShaoNB/BedrockPlayerSupport/releases/download/v1.8.3/BedrockPlayerSupport-1"
-                 ".8.3.jar", "plugins/BedrockPlayerSupport-1.8.3.jar")
+        download("https://github.com/DongShaoNB/BedrockPlayerSupport/releases/download/v2.0.0/BedrockPlayerSupport-2"
+                 ".0.0-all.jar", "plugins/BedrockPlayerSupport.jar")
     if os.path.exists("plugins/Skript") and (auto_install or ask("安装Skript基岩版兼容")):
         download("https://github.com/kejonaMC/floodgate-skript/releases/download/v2.1/floodgate-skript-2.1.jar",
                  "plugins/floodgate-skript-2.1.jar")

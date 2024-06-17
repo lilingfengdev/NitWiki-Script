@@ -30,21 +30,21 @@ def install_via():
     if j8:
         path = get_path("ViaVersion-Java8")
     else:
-        path = get_path("ViaVersion")
+        path = get_path("ViaVersion-DEV")
     download(path, "plugins/ViaVersion.jar")
     if ask("安装ViaBackward(Via向下兼容)(推荐)"):
         if j8:
             path = get_path("ViaBackwards-Java8")
         else:
-            path = get_path("ViaBackwards")
+            path = get_path("ViaBackwards-DEV")
         download(path, "plugins/ViaBackwards.jar")
     if ask("安装ViaRewind(Via1.7-1.8兼容)"):
         if j8:
             path = get_path("ViaRewind-Java8")
         else:
-            path = get_path("ViaRewind")
+            path = get_path("ViaRewind-DEV")
         download(path, "plugins/ViaRewind.jar")
-        path = get_path("ViaRewind%20Legacy%20Support")
+        path = get_path("ViaRewind Legacy Support DEV")
         download(path, "plugins/ViaRewind-Legacy-Support.jar")
 
 
