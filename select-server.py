@@ -1,4 +1,7 @@
 import json
+import subprocess
+
+import requests
 from github import Github
 import typing
 
@@ -123,6 +126,26 @@ class CardBoard(SelectNode):
         return list(self.map.keys())
 
 
+class Forge(SelectNode):
+    def __init__(self):
+        super().__init__("Forge", {})
+
+    def download(self, version):
+        def _download():
+            build = json.loads(requests.get(f"https://bmclapi2.bangbang93.com/forge/minecraft/{version}").content)[0][
+                "build"]
+            print("开始下载")
+            download(f"https://bmclapi2.bangbang93.com/forge/download/{build}", f"forge-installer.jar")
+            download(f"https://bmclapi2.bangbang93.com/version/{version}/server", f"minecraft_server.{version}.jar")
+            print("开始安装")
+            subprocess.call(["java", "-jar", "forge-installer.jar", "--installServer"],stdout=subprocess.PIPE)
+            print("安装完成,开始清理")
+            os.remove("forge-installer.jar")
+            os.remove(f"minecraft_server.{version}.jar")
+
+        return _download
+
+
 root = SelectTree("")
 
 # 插件
@@ -156,7 +179,9 @@ forge.children = [forge1710, forge1122, Mohist()]
 
 mix.children = [forge, CardBoard()]
 
-mod = SelectTree("mod服(不要选择,目前不支持自动下载）")
+mod = SelectTree("mod服")
+
+mod.children = [Forge()]
 
 root.children = [plugin, mix, mod]
 
