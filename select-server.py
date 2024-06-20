@@ -138,9 +138,29 @@ class Forge(SelectNode):
             download(f"https://bmclapi2.bangbang93.com/forge/download/{build}", f"forge-installer.jar")
             download(f"https://bmclapi2.bangbang93.com/version/{version}/server", f"minecraft_server.{version}.jar")
             print("开始安装")
-            subprocess.call(["java", "-jar", "forge-installer.jar", "--installServer"],stdout=subprocess.PIPE)
+            subprocess.call(["java", "-jar", "forge-installer.jar", "--installServer"], stdout=subprocess.PIPE)
             print("安装完成,开始清理")
             os.remove("forge-installer.jar")
+            os.remove(f"minecraft_server.{version}.jar")
+
+        return _download
+
+
+class NeoForge(SelectNode):
+    def __init__(self):
+        super().__init__("NeoForge", {})
+
+    def download(self, version):
+        def _download():
+            build: str = json.loads(requests.get(f"https://bmclapi2.bangbang93.com/neoforge/list/{version}").content)[-1][
+                "rawVersion"]
+            download(f"https://bmclapi2.bangbang93.com/neoforge/version/{build[9:]}/download/installer.jar",
+                     "neoforge-installer.jar")
+            download(f"https://bmclapi2.bangbang93.com/version/{version}/server", f"minecraft_server.{version}.jar")
+            print("开始安装")
+            subprocess.call(["java", "-jar", "neoforge-installer.jar", "--installServer"], stdout=subprocess.PIPE)
+            print("安装完成,开始清理")
+            os.remove("neoforge-installer.jar")
             os.remove(f"minecraft_server.{version}.jar")
 
         return _download
@@ -168,7 +188,7 @@ plugin.children = [plugin1165, plugin1122, plugin188]
 
 # 混合
 
-mix = SelectTree("混合服(插件+MOD)")
+hybird = SelectTree("混合服(插件+MOD)")
 
 forge = SelectTree("Forge混合")
 
@@ -177,13 +197,13 @@ forge1122 = SkipSelectNode("MC 版本 1.12.2", "https://catserver.moe/download/u
 
 forge.children = [forge1710, forge1122, Mohist()]
 
-mix.children = [forge, CardBoard()]
+hybird.children = [forge, CardBoard()]
 
 mod = SelectTree("mod服")
 
-mod.children = [Forge()]
+mod.children = [Forge(), NeoForge()]
 
-root.children = [plugin, mix, mod]
+root.children = [plugin, hybird, mod]
 
 while True:
     if isinstance(root, SelectTree):
