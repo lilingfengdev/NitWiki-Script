@@ -1,5 +1,6 @@
 import json
 import subprocess
+import sys
 
 import requests
 from github import Github
@@ -137,11 +138,16 @@ class Forge(SelectNode):
             print("开始下载")
             download(f"https://bmclapi2.bangbang93.com/forge/download/{build}", f"forge-installer.jar")
             download(f"https://bmclapi2.bangbang93.com/version/{version}/server", f"minecraft_server.{version}.jar")
-            print("开始安装")
-            subprocess.call(["java", "-jar", "forge-installer.jar", "--installServer"], stdout=subprocess.PIPE)
-            print("安装完成,开始清理")
-            os.remove("forge-installer.jar")
-            os.remove(f"minecraft_server.{version}.jar")
+            try:
+                subprocess.run(["java", "-jar", "forge-installer.jar", "--installServer"], stdout=subprocess.PIPE,
+                               stderr=sys.stderr, check=True)
+            except subprocess.CalledProcessError:
+                print("安装失败")
+            else:
+                print("安装完成,开始清理")
+            finally:
+                os.remove("forge-installer.jar")
+                os.remove(f"minecraft_server.{version}.jar")
 
         return _download
 
@@ -152,19 +158,25 @@ class NeoForge(SelectNode):
 
     def download(self, version):
         def _download():
-            build: str = json.loads(requests.get(f"https://bmclapi2.bangbang93.com/neoforge/list/{version}").content)[-1][
-                "rawVersion"]
+            build: str = \
+                json.loads(requests.get(f"https://bmclapi2.bangbang93.com/neoforge/list/{version}").content)[-1][
+                    "rawVersion"]
             download(f"https://bmclapi2.bangbang93.com/neoforge/version/{build[9:]}/download/installer.jar",
                      "neoforge-installer.jar")
             download(f"https://bmclapi2.bangbang93.com/version/{version}/server", f"minecraft_server.{version}.jar")
             print("开始安装")
-            subprocess.call(["java", "-jar", "neoforge-installer.jar", "--installServer"], stdout=subprocess.PIPE)
-            print("安装完成,开始清理")
-            os.remove("neoforge-installer.jar")
-            os.remove(f"minecraft_server.{version}.jar")
+            try:
+                subprocess.run(["java", "-jar", "neoforge-installer.jar", "--installServer"], stdout=subprocess.PIPE,
+                               stderr=sys.stderr, check=True)
+            except subprocess.CalledProcessError:
+                print("安装失败")
+            else:
+                print("安装完成,开始清理")
+            finally:
+                os.remove("neoforge-installer.jar")
+                os.remove(f"minecraft_server.{version}.jar")
 
         return _download
-
 
 root = SelectTree("")
 
@@ -201,7 +213,7 @@ hybird.children = [forge, CardBoard()]
 
 mod = SelectTree("mod服")
 
-mod.children = [Forge(), NeoForge()]
+mod.children = [Forge(), NeoForge(),SkipSelectNode("Fabric(不要选择这个)","")]
 
 root.children = [plugin, hybird, mod]
 
