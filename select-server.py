@@ -178,6 +178,7 @@ class NeoForge(SelectNode):
 
         return _download
 
+
 root = SelectTree("")
 
 # 插件
@@ -213,7 +214,7 @@ hybird.children = [forge, CardBoard()]
 
 mod = SelectTree("mod服")
 
-mod.children = [Forge(), NeoForge(),SkipSelectNode("Fabric(不要选择这个)","")]
+mod.children = [Forge(), NeoForge(), SkipSelectNode("Fabric(不要选择这个)", "")]
 
 root.children = [plugin, hybird, mod]
 
