@@ -32,7 +32,7 @@ def downloads():
     download_task("Luckperms", "https://ci.lucko.me/job/LuckPerms/1549/artifact/bukkit/loader/build/libs/LuckPerms-Bukkit-5.4.134.jar")
     download_task("PlaceholderAPI", "https://ci.extendedclip.com/job/PlaceholderAPI/193/artifact/build/libs"
                                     "/PlaceholderAPI-2.11.6-DEV-193.jar")
-    download_task("PlugManx", "https://qcymc.cloud/f/QRCo/PlugManX-2.3.8.jar")
+    download_task("PlugManx", "https://github.com/Test-Account666/PlugManX/releases/download/2.4.0/PlugManX-2.4.0.jar")
     download_task("WorldEdit", "https://ci.enginehub.org/repository/download/bt10/23766:id/worldedit-bukkit-7.3.1"
                                "-SNAPSHOT-dist.jar?branch=version/7.3.x&guest=1")
     download_task("EssentialsX", "https://qcymc.cloud/f/XBSO/EssentialsX-2.21.0-dev+81-cde7184.jar")

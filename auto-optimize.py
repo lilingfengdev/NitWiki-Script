@@ -58,10 +58,11 @@ def optimize_spigot(spigot):
         "item": 3.5,
         "exp": 4.0
     }
-    spigot["world-settings"]["default"]["ticks-per"] = {
-        "hopper-transfer": 8,
-        "hopper-check": 8
-    }
+    if danger:
+        spigot["world-settings"]["default"]["ticks-per"] = {
+            "hopper-transfer": 4,
+            "hopper-check": 4
+        }
 
 
 @handler(r'config/paper-global.yml')
