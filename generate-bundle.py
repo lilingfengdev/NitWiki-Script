@@ -5,7 +5,6 @@ import sys
 import urllib.request
 import zipfile
 import platform
-import nuitka.__main__
 
 if platform.system() == 'Windows':
     os.system("pip install rtoml-0.10.0-cp311-none-win_amd64.whl ")
@@ -18,6 +17,8 @@ else:
     os.system("pip install rtoml")
 
 os.system("python3 -m pip install pyyaml install-jdk tqdm psutil requests imageio pygithub rtoml nuitka")
+
+import nuitka.__main__
 
 if os.path.exists("dist"):
     shutil.rmtree("dist")
