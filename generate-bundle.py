@@ -5,7 +5,6 @@ import sys
 import urllib.request
 import zipfile
 import platform
-from concurrent.futures.process import ProcessPoolExecutor
 
 if platform.system() == 'Windows':
     os.system("pip install rtoml-0.10.0-cp311-none-win_amd64.whl ")
@@ -18,8 +17,6 @@ else:
     os.system("pip install rtoml")
 
 os.system("python3 -m pip install pyyaml install-jdk tqdm psutil requests imageio pygithub rtoml nuitka")
-
-import nuitka.__main__
 
 if os.path.exists("dist"):
     shutil.rmtree("dist")
@@ -47,11 +44,8 @@ def build(file):
             shutil.move(os.path.join(os.getcwd(), "build", f), os.path.join(os.getcwd(), "dist", f))
 
 
-pool = ProcessPoolExecutor(max_workers=4)
 for file in os.listdir(os.path.join(os.getcwd(), "src")):
-    pool.submit(build, file)
-
-pool.shutdown(wait=True)
+    build(file)
 
 # 傻逼
 # 狗屎代碼
