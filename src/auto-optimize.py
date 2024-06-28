@@ -65,12 +65,12 @@ def optimize_spigot(spigot):
         }
 
 
-@handler(r'../config/paper-global.yml')
+@handler(r'config/paper-global.yml')
 def optimize_paper_global(paper):
     paper["timings"]["enabled"] = False
 
 
-@handler(r'../config/paper-world-defaults.yml')
+@handler(r'config/paper-world-defaults.yml')
 def optimize_paper_world(paper):
     paper["chunks"]["delay-chunk-unloads-by"] = "10s"
     paper["chunks"]["max-auto-save-chunks-per-tick"] = 8
@@ -171,7 +171,7 @@ def optimize_paper_world(paper):
     paper["collisions"]["fix-climbing-bypassing-cramming-rule"] = True
     paper["misc"]["update-pathfinding-on-block-update"] = False
     paper["misc"]["redstone-implementation"] = "ALTERNATE_CURRENT"
-    if not (os.path.exists("pufferfish.yml") or os.path.exists("../leaf_config/leaf_global_config.toml")):
+    if not (os.path.exists("pufferfish.yml") or os.path.exists("leaf_config/leaf_global_config.toml")):
         paper["tick-rates"]["behavior"] = {
             "villager": {
                 "validatenearbypoi": 60,
@@ -203,7 +203,7 @@ def optimize_paper_world(paper):
     }
 
 
-@handler('../config/gale-world-defaults.yml')
+@handler('config/gale-world-defaults.yml')
 def optimize_gale_world(gale):
     gale["small-optimizations"]["max-projectile-chunk-loads"]["per-tick"] = 2
     gale["small-optimizations"]["max-projectile-chunk-loads"]["per-projectile"][
@@ -221,7 +221,7 @@ def optimize_gale_world(gale):
     gale["small-optimizations"]["save-fireworks"] = False
 
 
-@handler('../config/gale-global.yml')
+@handler('config/gale-global.yml')
 def optimize_gale_global(gale):
     gale["small-optimizations"]["reduced-intervals"]["update-entity-line-of-sight"] = 10
 
@@ -256,7 +256,7 @@ def optimize_purpur(purpur):
     purpur["world-settings"]["default"]["gameplay-mechanics"]["player"]["teleport-if-outside-border"] = True
 
 
-@handler("../leaf_config/leaf_global_config.toml", toml.load, toml.dump)
+@handler("leaf_config/leaf_global_config.toml", toml.load, toml.dump)
 def optimize_leaf(leaf):
     leaf["async"]["async_pathfinding"]["enabled"] = True
     leaf["async"]["async_mob_spawning"]["enabled"] = True

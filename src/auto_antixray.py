@@ -14,7 +14,7 @@ def antixray_config(config):
     config["anticheat"] = {"anti-xray": {}}
 
 
-@handler(r'../config/paper-world-defaults.yml')
+@handler(r'config/paper-world-defaults.yml')
 def config_paper_world(paper):
     antixray_config(paper)
     paper["anticheat"]["anti-xray"] = {
@@ -50,7 +50,7 @@ def config_paper_world(paper):
     hide_air(paper)
 
 
-@handler(r'../world_nether/paper-world.yml')
+@handler(r'world_nether/paper-world.yml')
 def config_paper_nether(paper):
     antixray_config(paper)
     paper["anticheat"]["anti-xray"] = {
@@ -70,7 +70,7 @@ def config_paper_nether(paper):
     hide_air(paper)
 
 
-@handler(r'../world_the_end/paper-world.yml')
+@handler(r'world_the_end/paper-world.yml')
 def config_paper_end(paper):
     antixray_config(paper)
     paper["anticheat"]["anti-xray"]["enabled"] = False

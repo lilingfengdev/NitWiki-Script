@@ -5,7 +5,7 @@ script_license()
 
 
 def main():
-    if not os.path.exists("../plugins/ViaVersion"):
+    if not os.path.exists("plugins/ViaVersion"):
         print("Via尚未安装")
         install_via()
         print("安装完成,启动服务器,在关闭后执行此脚本")
@@ -29,21 +29,21 @@ def install_via():
         path = get_path("ViaVersion-Java8")
     else:
         path = get_path("ViaVersion-DEV")
-    download(path, "../plugins/ViaVersion.jar")
+    download(path, "plugins/ViaVersion.jar")
     if ask("安装ViaBackward(Via向下兼容)(推荐)"):
         if j8:
             path = get_path("ViaBackwards-Java8")
         else:
             path = get_path("ViaBackwards-DEV")
-        download(path, "../plugins/ViaBackwards.jar")
+        download(path, "plugins/ViaBackwards.jar")
     if ask("安装ViaRewind(Via1.7-1.8兼容)"):
         if j8:
             path = get_path("ViaRewind-Java8")
         else:
             path = get_path("ViaRewind-DEV")
-        download(path, "../plugins/ViaRewind.jar")
+        download(path, "plugins/ViaRewind.jar")
         path = get_path("ViaRewind Legacy Support DEV")
-        download(path, "../plugins/ViaRewind-Legacy-Support.jar")
+        download(path, "plugins/ViaRewind-Legacy-Support.jar")
 
 
 def install_extend():

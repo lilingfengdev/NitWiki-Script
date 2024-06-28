@@ -45,7 +45,8 @@ def build(file):
 
 
 for file in os.listdir(os.path.join(os.getcwd(), "src")):
-    build(file)
+    if file != "utils.py":
+        build(file)
 
 # 傻逼
 # 狗屎代碼

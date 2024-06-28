@@ -13,14 +13,14 @@ def extract_zipfile():
 
 def apply_config():
     c = set(os.listdir("temp"))
-    for p in os.listdir(os.path.join(os.getcwd(), "../plugins")):
-        if os.path.isdir(os.path.join(os.getcwd(), "../plugins", p)) and (p in c):
-            shutil.rmtree(os.path.join(os.getcwd(), "../plugins", p))
-            shutil.move(os.path.join(os.getcwd(), "temp", p), os.path.join(os.getcwd(), "../plugins"))
+    for p in os.listdir(os.path.join(os.getcwd(), "plugins")):
+        if os.path.isdir(os.path.join(os.getcwd(), "plugins", p)) and (p in c):
+            shutil.rmtree(os.path.join(os.getcwd(), "plugins", p))
+            shutil.move(os.path.join(os.getcwd(), "temp", p), os.path.join(os.getcwd(), "plugins"))
             print(f"成功应用配置{p}")
 
 
-@handler("../plugins/ViaBackwards/config.yml")
+@handler("plugins/ViaBackwards/config.yml")
 def config_via(via):
     via["handle-pings-as-inv-acknowledgements"] = True
 

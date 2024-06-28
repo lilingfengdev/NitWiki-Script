@@ -24,7 +24,7 @@ class SelectNode:
         return self.map[ver]
 
     def download(self, version):
-        return lambda: download(self.get_url_by_version(version), "../server.jar")
+        return lambda: download(self.get_url_by_version(version), "server.jar")
 
 
 class SkipSelectNode(SelectNode):
@@ -36,7 +36,7 @@ class SkipSelectNode(SelectNode):
         return self.url
 
     def download(self, version=""):
-        return lambda: download(self.get_url(), "../server.jar")
+        return lambda: download(self.get_url(), "server.jar")
 
 
 class SelectTree:
@@ -136,7 +136,7 @@ class Forge(SelectNode):
             build = json.loads(requests.get(f"https://bmclapi2.bangbang93.com/forge/minecraft/{version}").content)[0][
                 "build"]
             print("开始下载")
-            download(f"https://bmclapi2.bangbang93.com/forge/download/{build}", f"../forge-installer.jar")
+            download(f"https://bmclapi2.bangbang93.com/forge/download/{build}", f"forge-installer.jar")
             download(f"https://bmclapi2.bangbang93.com/version/{version}/server", f"minecraft_server.{version}.jar")
             try:
                 subprocess.run(["java", "-jar", "forge-installer.jar", "--installServer"], stdout=subprocess.PIPE,
@@ -146,7 +146,7 @@ class Forge(SelectNode):
             else:
                 print("安装完成,开始清理")
             finally:
-                os.remove("../forge-installer.jar")
+                os.remove("forge-installer.jar")
                 os.remove(f"minecraft_server.{version}.jar")
 
         return _download
