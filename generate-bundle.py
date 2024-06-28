@@ -45,7 +45,7 @@ def build(file):
     nuitka.__main__.main()
     filename = os.path.splitext(file)[0]
     for f in os.listdir(os.path.join(os.getcwd(), "build")):
-        if filename in f and not os.path.isdir(os.path.join(os.getcwd(), "build", f)):
+        if f.startswith(filename) and not os.path.isdir(os.path.join(os.getcwd(), "build", f)):
             shutil.move(os.path.join(os.getcwd(), "build", f), os.path.join(os.getcwd(), "dist", f))
 
 
