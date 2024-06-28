@@ -31,7 +31,7 @@ os.mkdir("dist")
 def build(file):
     filepath = os.path.join(os.getcwd(), "src", file)
     print(f"build {file}", flush=True)
-    args = ["nuitka", "--onefile", filepath, "--assume-yes-for-downloads", "--output-dir=build"]
+    args = ["python", "-m", "nuitka", "--onefile", filepath, "--assume-yes-for-downloads", "--output-dir=build"]
     if platform.system() == 'Windows':
         args.append("--windows-icon-from-ico=favicon.png")
         args.append("--enable-plugins=upx")
@@ -40,9 +40,7 @@ def build(file):
         args.append("--macos-app-icon=favicon.png")
     if platform.system() == 'Linux':
         args.append("--linux-icon=favicon.png")
-    print(" ".join(args))
-    sys.argv = args
-    nuitka.__main__.main()
+    subprocess.call(args)
     filename = os.path.splitext(file)[0]
     for f in os.listdir(os.path.join(os.getcwd(), "build")):
         if f.startswith(filename) and not os.path.isdir(os.path.join(os.getcwd(), "build", f)):
@@ -52,7 +50,7 @@ def build(file):
 pool = ProcessPoolExecutor(max_workers=4)
 for file in os.listdir(os.path.join(os.getcwd(), "src")):
     pool.submit(build, file)
-...
+
 pool.shutdown(wait=True)
 
 # 傻逼
