@@ -4,6 +4,7 @@ import subprocess
 import urllib.request
 import zipfile
 import platform
+import io
 
 if platform.system() == 'Windows':
     os.system("python3 -m pip install pyyaml install-jdk tqdm psutil requests pygithub imageio "
@@ -16,19 +17,20 @@ if platform.system() == 'Windows':
 else:
     os.system("python3 -m pip install pyyaml install-jdk tqdm psutil requests imageio pygithub rtoml nuitka")
 
+if os.path.exists("dist"):
+    shutil.rmtree("dist")
 os.mkdir("dist")
 for file in os.listdir(os.path.join(os.getcwd(), "src")):
     filepath = os.path.join(os.getcwd(), "src", file)
     print(f"build {file}", flush=True)
-    args = ["python3", "-m", "nuitka", "--lto=yes", "--onefile", filepath, "--output-dir=dist"]
+    args = ["nuitka", "--lto=yes", "--onefile", filepath, "--output-dir=dist", "--mingw64"]
     if platform.system() == 'Windows':
         args.append("--windows-icon-from-ico=favicon.png")
+        args.append("--enable-plugins=upx")
     if platform.system() == 'MacOS':
         args.append("--macos-app-icon=favicon.png")
-    subprocess.call(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    if platform.system() == 'Windows':
-        subprocess.call(["upx.exe", os.path.join(os.getcwd(), "dist", file + ".exe"), "-o",
-                         os.path.join(os.getcwd(), "dist", file + ".exe"), "-9", "-q"])
-    break
+    print(" ".join(args))
+    subprocess.call(args)
+
 # 傻逼
 # 狗屎代碼
