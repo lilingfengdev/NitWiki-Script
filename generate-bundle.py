@@ -26,7 +26,7 @@ os.mkdir("dist")
 for file in os.listdir(os.path.join(os.getcwd(), "src")):
     filepath = os.path.join(os.getcwd(), "src", file)
     print(f"build {file}", flush=True)
-    args = ["nuitka", "--onefile", filepath, "--output-dir=dist", "--quiet", "--pgo", "--remove-output",
+    args = ["nuitka", "--onefile", filepath, "--output-dir=dist", "--quiet", "--remove-output",
             "--assume-yes-for-downloads"]
     if platform.system() == 'Windows':
         args.append("--windows-icon-from-ico=favicon.png")
