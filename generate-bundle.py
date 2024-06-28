@@ -22,15 +22,17 @@ import nuitka.__main__
 
 if os.path.exists("dist"):
     shutil.rmtree("dist")
+
 os.mkdir("dist")
+
 for file in os.listdir(os.path.join(os.getcwd(), "src")):
     filepath = os.path.join(os.getcwd(), "src", file)
     print(f"build {file}", flush=True)
-    args = ["nuitka", "--onefile", filepath, "--output-dir=dist", "--quiet", "--remove-output",
-            "--assume-yes-for-downloads"]
+    args = ["nuitka", "--onefile", filepath, "--output-dir=dist", "--quiet", "--assume-yes-for-downloads"]
     if platform.system() == 'Windows':
         args.append("--windows-icon-from-ico=favicon.png")
         args.append("--enable-plugins=upx")
+        args.append("--upx-binary=upx.exe")
     if platform.system() == 'MacOS':
         args.append("--macos-app-icon=favicon.png")
     if platform.system() == 'Linux':
