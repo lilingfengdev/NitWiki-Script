@@ -13,7 +13,7 @@ def download_task(name: str, url: str):
         try:
             response = requests.get(url)
             response.raise_for_status()
-            with open(os.path.join(os.getcwd(), "plugins", name + ".jar"), 'wb') as f:
+            with open(os.path.join(os.getcwd(), "../plugins", name + ".jar"), 'wb') as f:
                 f.write(response.content)
         except Exception as e:
             print(f"下载错误{e},在下载{name}")
@@ -39,7 +39,7 @@ def downloads():
     download_task("Multiverse-Core", "https://ci.onarandombox.com/job/Multiverse-Core/870/artifact/target/Multiverse"
                                      "-Core-4.3.2-SNAPSHOT.jar")
     download_task("AuthMe", "https://qcymc.cloud/f/RDF5/AuthMe-5.6.0-FORK-Universal.jar")
-    if not os.path.exists("plugins/spark"):
+    if not os.path.exists("../plugins/spark"):
         download_task("spark",
                       "https://ci.lucko.me/job/spark/410/artifact/spark-bukkit/build/libs/spark-1.10.65-bukkit.jar")
     download_task("SkinRestorer", "https://ci.codemc.io/job/SkinsRestorer/job/SkinsRestorer/lastSuccessfulBuild"

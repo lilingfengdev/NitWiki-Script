@@ -18,10 +18,10 @@ def update_log(content):
 
 if __name__ == "__main__":
     print("上传服务端日志")
-    if not os.path.exists("logs/latest.log"):
+    if not os.path.exists("../logs/latest.log"):
         print("CNM,没启动上传你妈的日志")
     else:
-        with open("logs/latest.log", "r", encoding="utf8") as fp:
+        with open("../logs/latest.log", "r", encoding="utf8") as fp:
             try:
                 url = update_log(fp.read())
             except RuntimeError as e:
