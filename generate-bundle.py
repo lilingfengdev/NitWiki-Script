@@ -43,8 +43,10 @@ def build(file):
     print(" ".join(args))
     sys.argv = args
     nuitka.__main__.main()
-    filename = os.path.splitext(file)[0] + ".exe"
-    shutil.move(os.path.join(os.getcwd(), "build", filename), os.path.join(os.getcwd(), "dist", filename))
+    filename = os.path.splitext(file)[0]
+    for f in os.listdir(os.path.join(os.getcwd(), "build")):
+        if filename in f and not os.path.isdir(os.path.join(os.getcwd(), "build", f)):
+            shutil.move(os.path.join(os.getcwd(), "build", f), os.path.join(os.getcwd(), "dist", f))
 
 
 pool = ProcessPoolExecutor(max_workers=4)
