@@ -3,6 +3,7 @@ import shutil
 import urllib.request
 import zipfile
 import platform
+
 if platform.system() == 'Windows':
     os.system("python3 -m pip install pyyaml install-jdk tqdm psutil requests pygithub "
               "rtoml-0.10.0-cp311-none-win_amd64.whl pyinstaller")
@@ -14,15 +15,15 @@ if platform.system() == 'Windows':
 else:
     os.system("python3 -m pip install pyyaml install-jdk tqdm psutil requests pygithub rtoml pyinstaller")
 
-
 import PyInstaller.__main__
+
 os.mkdir("dist")
-for file in os.listdir(os.getcwd()):
-    if file != "utils.py" and file != "generate-bundle.py" and file.endswith(".py") and not os.path.isdir(file):
-        print(f"build {file}", flush=True)
-        flag = ["-F", file, "--optimize", "2", "-i", "favicon.ico" ]
-        if platform.system() != 'Windows':
-            flag.append("--strip")
-        PyInstaller.__main__.run(flag)
+for file in os.listdir(os.path.join(os.getcwd(), "src")):
+    filepath = os.path.join(os.getcwd(), "src", file)
+    print(f"build {file}", flush=True)
+    flag = ["-F", file, "--optimize", "2", "-i", "favicon.ico"]
+    if platform.system() != 'Windows':
+        flag.append("--strip")
+    PyInstaller.__main__.run(flag)
 # 傻逼
 # 狗屎代碼
