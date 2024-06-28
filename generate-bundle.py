@@ -5,6 +5,7 @@ import sys
 import urllib.request
 import zipfile
 import platform
+from concurrent.futures.process import ProcessPoolExecutor
 
 if platform.system() == 'Windows':
     os.system("pip install rtoml-0.10.0-cp311-none-win_amd64.whl ")
@@ -23,12 +24,14 @@ import nuitka.__main__
 if os.path.exists("dist"):
     shutil.rmtree("dist")
 
+os.mkdir("build")
 os.mkdir("dist")
 
-for file in os.listdir(os.path.join(os.getcwd(), "src")):
+
+def build(file):
     filepath = os.path.join(os.getcwd(), "src", file)
     print(f"build {file}", flush=True)
-    args = ["nuitka", "--onefile", filepath, "--output-dir=dist", "--quiet", "--assume-yes-for-downloads"]
+    args = ["nuitka", "--onefile", filepath, "--assume-yes-for-downloads", "--output-dir=build"]
     if platform.system() == 'Windows':
         args.append("--windows-icon-from-ico=favicon.png")
         args.append("--enable-plugins=upx")
@@ -40,6 +43,15 @@ for file in os.listdir(os.path.join(os.getcwd(), "src")):
     print(" ".join(args))
     sys.argv = args
     nuitka.__main__.main()
+    filename = os.path.splitext(file)[0] + ".exe"
+    shutil.move(os.path.join(os.getcwd(), "build", filename), os.path.join(os.getcwd(), "dist", filename))
+
+
+pool = ProcessPoolExecutor(max_workers=4)
+for file in os.listdir(os.path.join(os.getcwd(), "src")):
+    pool.submit(build, file)
+...
+pool.shutdown(wait=True)
 
 # 傻逼
 # 狗屎代碼
