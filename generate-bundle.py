@@ -21,7 +21,7 @@ os.mkdir("dist")
 for file in os.listdir(os.path.join(os.getcwd(), "src")):
     filepath = os.path.join(os.getcwd(), "src", file)
     print(f"build {file}", flush=True)
-    flag = ["-F", file, "--optimize", "2", "-i", "favicon.ico"]
+    flag = ["-F", filepath, "--optimize", "2", "-i", "favicon.ico"]
     if platform.system() != 'Windows':
         flag.append("--strip")
     PyInstaller.__main__.run(flag)
