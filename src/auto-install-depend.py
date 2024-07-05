@@ -29,7 +29,8 @@ def downloads():
     # 下载各个插件
     download_task("ProtocolLib", "https://ci.dmulloy2.net/job/ProtocolLib/lastSuccessfulBuild/artifact/build/libs"
                                  "/ProtocolLib.jar")
-    download_task("Luckperms", "https://ci.lucko.me/job/LuckPerms/1549/artifact/bukkit/loader/build/libs/LuckPerms-Bukkit-5.4.134.jar")
+    download_task("Luckperms", "https://ci.lucko.me/job/LuckPerms/1549/artifact/bukkit/loader/build/libs/LuckPerms"
+                               "-Bukkit-5.4.134.jar")
     download_task("PlaceholderAPI", "https://ci.extendedclip.com/job/PlaceholderAPI/193/artifact/build/libs"
                                     "/PlaceholderAPI-2.11.6-DEV-193.jar")
     download_task("PlugManx", "https://github.com/Test-Account666/PlugManX/releases/download/2.4.0/PlugManX-2.4.0.jar")

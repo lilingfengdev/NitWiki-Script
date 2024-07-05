@@ -12,6 +12,11 @@ def config(properties):
         properties["online-mode"] = "false"
     properties["level-seed"] = input("输入种子,为空则随机生成:")
     properties["max-players"] = int(input("输入最大玩家数(默认20):"))
+    if ask("开启命令方块"):
+        properties["enable-command-block"] = "true"
+    else:
+        properties["enable-command-block"] = "false"
+    properties["allow-flight"] = "true"  # 垃圾玩意,问都不想问
 
 
 if __name__ == "__main__":
