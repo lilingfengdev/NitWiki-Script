@@ -70,7 +70,7 @@ def optimize_paper_global(paper):
     paper["timings"]["enabled"] = False
 
 
-@handler(r'config/paper-world-defaults.yml')
+@handler("paper.yml" if os.path.isfile("paper.yml") else r'config/paper-world-defaults.yml')
 def optimize_paper_world(paper):
     paper["chunks"]["delay-chunk-unloads-by"] = "10s"
     paper["chunks"]["max-auto-save-chunks-per-tick"] = 8
