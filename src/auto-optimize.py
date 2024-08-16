@@ -78,6 +78,7 @@ def optimize_paper_world(paper):
     paper["chunks"]["entity-per-chunk-save-limit"] = {
         "area_effect_cloud": 8,
         "arrow": 16,
+        "breeze_wind_charge":8,
         "dragon_fireball": 3,
         "egg": 8,
         "ender_pearl": 8,
@@ -120,6 +121,7 @@ def optimize_paper_world(paper):
             "jungle_leaves": 300,
             "acacia_leaves": 300,
             "dark_oak_leaves": 300,
+            "cherry_leaves": 300,
             "mangrove_leaves": 300,
             "cactus": 300,
             "diorite": 300,
