@@ -85,7 +85,7 @@ def download(url, local_filepath):
     try:
         p = parse.urlparse(url)
         if p.netloc == "github.com":
-            url = "https://github.moeyy.xyz/" + url
+            url = "https://mirror.ghproxy.com/" + url
         with requests.get(url, stream=True, headers=headers) as r:
             r.raise_for_status()
             size = int(r.headers["Content-Length"])
