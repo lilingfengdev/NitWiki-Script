@@ -56,6 +56,13 @@ def install_extend():
     if ask("安装Via自动更新"):
         download("https://github.com/NewAmazingPVP/AutoViaUpdater/releases/download/v8.0/AutoViaUpdater-8.0.jar",
                  "plugins/Via-AutoViaUpdater.jar")
+    if ask("安装愚人节版本支持"):
+        download(
+            "https://hangarcdn.papermc.io/plugins/ViaVersion/ViaAprilFools/versions/3.0.1/PAPER/ViaAprilFools-3.0.1.jar",
+            "plugins/Via-ViaAprilFools.jar")
+    if ask("安装老式API兼容"):
+        download("https://github.com/ViaVersionAddons/ViaLegacyAPI/releases/download/1.0.0/ViaLegacyAPI-1.0.0.jar",
+                 "plugins/Via-ViaLegacyAPI.jar")
 
 
 if __name__ == '__main__':

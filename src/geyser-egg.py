@@ -78,7 +78,7 @@ def install_extend(auto_install=False):
         download("https://ci.kejonamc.dev/job/GeyserUpdater/job/main/18/artifact/target/GeyserUpdater-1.6.4.jar",
                  "plugins/GeyserUpdater-1.6.4.jar")
     if not auto_install and ask("安装Geyser扩展(1.20.6+)"):
-        download("https://github.com/GeyserExtras/GeyserExtras/releases/download/1.20.6-v1.1.1/GeyserExtras.jar",
+        download("https://github.com/lilingfengdev/GeyserExtrasCN/releases/download/latest/GeyserExtras.jar",
                  "plugins/GeyserExtras.jar")
 
 
