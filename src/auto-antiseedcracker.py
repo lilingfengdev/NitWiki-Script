@@ -30,7 +30,7 @@ def config_leaf_global(leaf):
 
 def download_antiseedcracker():
     print("开始下载AntiSeedCracker")
-    download(r"https://qcymc.cloud/f/L91iQ/AntiSeedCracker-1.2.0.jar",
+    download(r"https://cloud.wujiyan.cc/f/x41cK/AntiSeedCracker-1.2.1.jar",
              "plugins/AntiSeedCracker-1.2.0.jar")
     print("下载完成")
 
