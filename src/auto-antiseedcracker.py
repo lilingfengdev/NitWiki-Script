@@ -13,11 +13,19 @@ def config_paper_world(paper):
 
 
 @handler(r'leaf_config/leaf_global_config.toml', toml.load, toml.dump)
-def config_leaf(leaf):
+def config_leaf_legacy(leaf):
     if os.path.exists("world"):
         print("你需要删除原有存档才可以使用")
     else:
         leaf["misc"]["use_secure_seed"]["enabled"] = True
+
+
+@handler(r"config/leaf-global.yml")
+def config_leaf_global(leaf):
+    if os.path.exists("world"):
+        print("你需要删除原有存档才可以使用")
+    else:
+        leaf["misc"]["secure-seed"]["enabled"] = True
 
 
 def download_antiseedcracker():
@@ -30,7 +38,8 @@ def download_antiseedcracker():
 if __name__ == "__main__":
     config_paper_world()
     if ask("开启Leaf安全种子（开启前请读一遍文档）"):
-        config_leaf()
-    if ask("需要自动下载AntiSeedCracker"):
+        config_leaf_legacy()
+        config_leaf_global()
+    if ask("下载AntiSeedCracker"):
         download_antiseedcracker()
     exit_()
