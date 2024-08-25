@@ -78,7 +78,7 @@ def optimize_paper_world(paper):
     paper["chunks"]["entity-per-chunk-save-limit"] = {
         "area_effect_cloud": 8,
         "arrow": 16,
-        "breeze_wind_charge":8,
+        "breeze_wind_charge": 8,
         "dragon_fireball": 3,
         "egg": 8,
         "ender_pearl": 8,
@@ -259,7 +259,7 @@ def optimize_purpur(purpur):
 
 
 @handler("leaf_config/leaf_global_config.toml", toml.load, toml.dump)
-def optimize_leaf(leaf):
+def optimize_leaf_legacy(leaf):
     leaf["async"]["async_pathfinding"]["enabled"] = True
     leaf["async"]["async_mob_spawning"]["enabled"] = True
     if ask("使用的是Java 21+"):
@@ -270,6 +270,24 @@ def optimize_leaf(leaf):
     dab["activation-dist-mod"] = 7
     leaf["gameplay"]["disable_moved_wrongly_threshold"]["enabled"] = True
     leaf["performance"]["use_faster_random_generator"]["enabled"] = True
+
+
+@handler("config/leaf-global.yml")
+def optimize_leaf_global(leaf):
+    leaf["async"]["async-pathfinding"]["enabled"] = True
+    leaf["async"]["async-mob-spawning"]["enabled"] = True
+    leaf["performance"]["use-virtual-thread-for-async-scheduler"] = True
+    leaf["performance"]["reduce-packets"]["reduce-entity-move-packets"] = True
+    leaf["performance"]["optimize-minecart"]["enabled"] = True
+    leaf["performance"]["faster-random-generator"]["enabled"] = True
+    if not danger:
+        leaf["performance"]["faster-random-generator"]["use-legacy-random-for-slime-chunk"] = True
+    dab = leaf["performance"]["dab"]
+    dab["max-tick-freq"] = 20
+    dab["activation-dist-mod"] = 7
+    leaf["performance"]["dont-save-entity"]["dont-save-primed-tnt"] = True
+    leaf["performance"]["dont-save-entity"]["dont-save-falling-block"] = True
+    leaf["gameplay-mechanisms"]["player"]["disable-moved-wrongly-threshold"] = True
 
 
 if __name__ == "__main__":
@@ -285,5 +303,6 @@ if __name__ == "__main__":
     if not os.path.exists("purpur.yml"):
         print("Purpur尚未安装")
         print("为什么不试一下Purpur呢？")
-    optimize_leaf()
+    optimize_leaf_legacy()
+    optimize_leaf_global()
     exit_()
