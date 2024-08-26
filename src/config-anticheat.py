@@ -6,7 +6,7 @@ script_license()
 
 
 def extract_zipfile():
-    download("https://qcymc.cloud/f/zmEI4/temp.zip", "temp.zip")
+    download("https://cloud.wujiyan.cc/f/QElsz/config.zip", "temp.zip")
     zip = zipfile.ZipFile("temp.zip")
     zip.extractall(os.path.join(os.getcwd(), "temp"))
 

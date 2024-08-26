@@ -1,3 +1,4 @@
+import os.path
 from concurrent.futures import ThreadPoolExecutor, wait
 from utils import *
 
@@ -11,10 +12,7 @@ def download_task(name: str, url: str):
     def _download():
         print(f"开始下载{name}")
         try:
-            response = requests.get(url)
-            response.raise_for_status()
-            with open(os.path.join(os.getcwd(), "plugins", name + ".jar"), 'wb') as f:
-                f.write(response.content)
+            download(url, os.path.join(os.getcwd(), "plugins", name + ".jar"))
         except Exception as e:
             print(f"下载错误{e},在下载{name}")
             print("重试")
@@ -50,6 +48,8 @@ def downloads():
 
 
 if __name__ == "__main__":
+    if not os.path.exists("plugins"):
+        os.mkdir("plugins")
     downloads()
     wait(task)
     print("完成！")

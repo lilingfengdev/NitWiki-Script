@@ -17,6 +17,7 @@ def config(properties):
     else:
         properties["enable-command-block"] = "false"
     properties["allow-flight"] = "true"  # 垃圾玩意,问都不想问
+    print("配置完成!")
 
 
 if __name__ == "__main__":

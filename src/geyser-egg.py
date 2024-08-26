@@ -73,7 +73,7 @@ def install_extend(auto_install=False):
         download(
             "https://download.geysermc.org/v2/projects/thirdpartycosmetics/versions/latest/builds/latest/downloads"
             "/thirdpartycosmetics",
-            "plugins/Geyser-Spigot/extensions/thirdpartycosmetics.jar")
+            "plugins/Geyser-Spigot/extensions/ThirdPartyCosmetics.jar")
     if auto_install or ask("安装Geyser自动更新"):
         download("https://ci.kejonamc.dev/job/GeyserUpdater/job/main/18/artifact/target/GeyserUpdater-1.6.4.jar",
                  "plugins/GeyserUpdater-1.6.4.jar")
