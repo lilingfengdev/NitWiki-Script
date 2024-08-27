@@ -22,7 +22,7 @@ def install_runtime():
 
 def install_lip():
     print("开始下载Lip")
-    download("https://github.com/futrime/lip/releases/download/v0.23.2/lip-windows-amd64-setup.exe", "lip-install.exe")
+    download("https://cloud.wujiyan.cc/f/06BSk/lip-windows-amd64-setup.exe", "lip-install.exe")
     print("下载完成")
     print("开始安装Lip")
     subprocess.run(["lip-install.exe", "/S"], stdout=subprocess.PIPE, stderr=sys.stderr, check=True)
