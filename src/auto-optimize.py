@@ -7,6 +7,7 @@ script_license()
 print("开始优化!")
 
 danger = ask("是否开启危险优化(会严重影响玩家体验)?")
+experiment = ask("是否开启实验性优化(这些没有被合并到主分支)?")
 
 
 @handler('server.properties', ServerPropLoader.load, ServerPropLoader.dump)
@@ -194,7 +195,6 @@ def optimize_paper_world(paper):
     paper["tick-rates"]["mob-spawner"] = 2
     paper["tick-rates"]["grass-spread"] = 4
     paper["tick-rates"]["container-update"] = 1
-    paper["tick-rates"]["wet-farmland"] = 2
     paper["environment"]["optimize-explosions"] = True
     if danger:
         paper["environment"]["treasure-maps"]["enabled"] = False
@@ -203,6 +203,10 @@ def optimize_paper_world(paper):
         "loot-tables": True,
         "villager-trade": True
     }
+    if experiment:
+        paper["tick-rates"]["wet-farmland"] = 2
+        paper["spawn"]["keep-spawn-loaded"] = False
+        paper["spawn"]["keep-spawn-loaded-range"] = 3
 
 
 @handler('config/gale-world-defaults.yml')

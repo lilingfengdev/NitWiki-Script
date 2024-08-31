@@ -1,4 +1,3 @@
-
 from utils import *
 import zipfile, shutil
 
@@ -23,6 +22,12 @@ def apply_config():
 @handler("plugins/ViaBackwards/config.yml")
 def config_via(via):
     via["handle-pings-as-inv-acknowledgements"] = True
+
+
+def install_obfuscator():
+    if ask("安装AntiCheatObfuscator(反作弊混淆器)"):
+        download("https://cdn.modrinth.com/data/Tr96sBMe/versions/n5HBUcnR/AntiCheatObfuscator-1.2.6.jar",
+                 "plugins/AntiCheatObfuscator.jar")
 
 
 if __name__ == "__main__":
