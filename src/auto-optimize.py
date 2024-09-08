@@ -265,11 +265,6 @@ def optimize_purpur(purpur):
 @handler("leaf_config/leaf_global_config.toml", toml.load, toml.dump)
 def optimize_leaf_legacy(leaf):
     leaf["async"]["async_pathfinding"]["enabled"] = True
-    leaf["async"]["async_pathfinding"]["max-threads"] = 4
-    leaf["async"]["async-entity-tracker"]["enabled"] = True
-    leaf["async"]["async-entity-tracker"]["max-threads"] = 4
-    if ask("使用 Citizens"):
-        leaf["async"]["async-entity-tracker"]["compat-mode"] = True
     leaf["async"]["async_mob_spawning"]["enabled"] = True
     if ask("使用的是Java 21+"):
         leaf["performance"]["use_virtual_thread_for_async_scheduler"]["enabled"] = True
@@ -285,6 +280,11 @@ def optimize_leaf_legacy(leaf):
 def optimize_leaf_global(leaf):
     leaf["async"]["async-pathfinding"]["enabled"] = True
     leaf["async"]["async-mob-spawning"]["enabled"] = True
+    leaf["async"]["async-pathfinding"]["max-threads"] = 4
+    leaf["async"]["async-entity-tracker"]["enabled"] = True
+    leaf["async"]["async-entity-tracker"]["max-threads"] = 4
+    if ask("使用 Citizens"):
+        leaf["async"]["async-entity-tracker"]["compat-mode"] = True
     leaf["performance"]["use-virtual-thread-for-async-scheduler"] = True
     leaf["performance"]["reduce-packets"]["reduce-entity-move-packets"] = True
     leaf["performance"]["optimize-minecart"]["enabled"] = True
