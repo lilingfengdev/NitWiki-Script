@@ -174,7 +174,9 @@ def optimize_paper_world(paper):
     paper["collisions"]["fix-climbing-bypassing-cramming-rule"] = True
     paper["misc"]["update-pathfinding-on-block-update"] = False
     paper["misc"]["redstone-implementation"] = "ALTERNATE_CURRENT"
-    if not (os.path.exists("pufferfish.yml") or os.path.exists("leaf_config/leaf_global_config.toml")):
+    if not (os.path.exists("pufferfish.yml") or
+            os.path.exists("leaf_config/leaf_global_config.toml") or
+            os.path.exists("config/leaf-global.yml")):
         paper["tick-rates"]["behavior"] = {
             "villager": {
                 "validatenearbypoi": 60,
@@ -280,9 +282,7 @@ def optimize_leaf_legacy(leaf):
 def optimize_leaf_global(leaf):
     leaf["async"]["async-pathfinding"]["enabled"] = True
     leaf["async"]["async-mob-spawning"]["enabled"] = True
-    leaf["async"]["async-pathfinding"]["max-threads"] = 4
     leaf["async"]["async-entity-tracker"]["enabled"] = True
-    leaf["async"]["async-entity-tracker"]["max-threads"] = 4
     if ask("使用 Citizens"):
         leaf["async"]["async-entity-tracker"]["compat-mode"] = True
     leaf["performance"]["use-virtual-thread-for-async-scheduler"] = True
