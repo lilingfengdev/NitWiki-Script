@@ -16,7 +16,7 @@ if platform.system() == 'Windows':
 else:
     os.system("pip install rtoml")
 
-os.system("python3 -m pip install pyyaml install-jdk tqdm psutil requests imageio pygithub rtoml elevate nuitka")
+os.system("python3 -m pip install pyyaml install-jdk tqdm psutil requests imageio pygithub rtoml elevate nuitka ordered-set")
 
 if os.path.exists("dist"):
     shutil.rmtree("dist")
