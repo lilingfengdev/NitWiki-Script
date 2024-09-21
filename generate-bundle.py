@@ -8,11 +8,6 @@ import platform
 
 if platform.system() == 'Windows':
     os.system("pip install rtoml-0.10.0-cp311-none-win_amd64.whl ")
-    urllib.request.urlretrieve("https://github.com/upx/upx/releases/download/v4.2.4/upx-4.2.4-win64.zip",
-                               "upx.zip")
-    zip = zipfile.ZipFile("upx.zip")
-    zip.extract("upx-4.2.4-win64/upx.exe", path=os.getcwd())
-    shutil.move("upx-4.2.4-win64/upx.exe", os.path.join(os.getcwd(), "upx.exe"))
 else:
     os.system("pip install rtoml")
 
