@@ -188,12 +188,12 @@ plugin1165 = SelectTree("MC 版本1.16.5+")
 
 plugin1165.children = [Purpur(), Leaves(), Leaf()]
 
-plugin1122 = SkipSelectNode("MC 版本1.12.2", "https://qcymc.cloud/f/G6ziA/beast-1.12.2.jar")
+plugin1122 = SkipSelectNode("MC 版本1.12.2", "https://vip.123pan.cn/1821558579/6492155")
 
 plugin188 = SelectTree("MC 版本1.8.8")
 
 panda = SkipSelectNode("PVP服务器", "https://vip.123pan.cn/1821558579/Lingyi/core/pandaspigot-116-mcres.cn.jar")
-sport = SkipSelectNode("生存服务器", "https://qcymc.cloud/f/ERGcp/sportpaper-1.8.8-R0.1-SNAPSHOT.jar")
+sport = SkipSelectNode("生存服务器", "https://vip.123pan.cn/1821558579/6492156")
 
 plugin188.children = [panda, sport]
 
@@ -205,7 +205,7 @@ hybird = SelectTree("混合服(插件+MOD)")
 
 forge = SelectTree("Forge混合")
 
-forge1710 = SkipSelectNode("MC 版本 1.7.10", "https://qcymc.cloud/f/gJRFG/Crucible-1.7.10-staging-0c25d250-server.jar")
+forge1710 = SkipSelectNode("MC 版本 1.7.10", "https://vip.123pan.cn/1821558579/6492157")
 forge1122 = SkipSelectNode("MC 版本 1.12.2", "https://catserver.moe/download/universal")
 
 forge.children = [forge1710, forge1122, Mohist()]
