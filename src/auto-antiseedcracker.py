@@ -22,10 +22,7 @@ def config_leaf_legacy(leaf):
 
 @handler(r"config/leaf-global.yml")
 def config_leaf_global(leaf):
-    if os.path.exists("world"):
-        print("你需要删除原有存档才可以使用")
-    else:
-        leaf["misc"]["secure-seed"]["enabled"] = True
+    leaf["misc"]["secure-seed"]["enabled"] = True
 
 
 def download_antiseedcracker():
