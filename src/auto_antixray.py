@@ -3,11 +3,14 @@ from utils import *
 script_license()
 
 hide_air_block = ask("隐藏空气中的矿石(可能会导致性能问题)")
+hide_lava_block = ask("隐藏岩浆中的矿石")
 
 
-def hide_air(config):
+def hide_ext(config):
     if hide_air_block:
         config["anticheat"]["anti-xray"]["hidden-blocks"].append("air")
+    if hide_lava_block:
+        config["anticheat"]["anti-xray"]["lava-obscures"] = True
 
 
 def antixray_config(config):
@@ -47,7 +50,7 @@ def config_paper_world(paper):
         "update-radius": 2,
         "use-permission": False
     }
-    hide_air(paper)
+    hide_ext(paper)
 
 
 @handler(r'world_nether/paper-world.yml')
@@ -67,7 +70,7 @@ def config_paper_nether(paper):
         "update-radius": 2,
         "use-permission": False
     }
-    hide_air(paper)
+    hide_ext(paper)
 
 
 @handler(r'world_the_end/paper-world.yml')
