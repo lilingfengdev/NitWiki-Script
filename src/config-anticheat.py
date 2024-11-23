@@ -5,7 +5,7 @@ script_license()
 
 
 def extract_zipfile():
-    download("https://dl.imc.rip/plugins/talent-config.zip", "temp.zip")
+    download("https://dl.yizhan.wiki/plugins/talent-config.zip", "temp.zip")
     zip = zipfile.ZipFile("temp.zip")
     zip.extractall(os.path.join(os.getcwd(), "temp"))
 

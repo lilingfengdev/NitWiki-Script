@@ -78,7 +78,7 @@ def install_extend(auto_install=False):
         download("https://ci.kejonamc.dev/job/GeyserUpdater/job/main/18/artifact/target/GeyserUpdater-1.6.4.jar",
                  "plugins/GeyserUpdater-1.6.4.jar")
     if not auto_install and ask("安装Geyser扩展(1.20.6+)"):
-        download("https://github.com/lilingfengdev/GeyserExtrasCN/releases/download/latest/GeyserExtras.jar",
+        download("https://cdn.modrinth.com/data/OguISbmK/versions/QDtr4UOA/GeyserExtras_CN.jar",
                  "plugins/GeyserExtras.jar")
 
 
@@ -102,8 +102,8 @@ def setup_plugin(auto_install=False):
                  "plugins/floodgate-skript-2.1.jar")
 
     if ask("安装基岩版菜单制作插件"):
-        download("https://ci.kejonamc.dev/job/CrossplatForms/job/main/lastSuccessfulBuild/artifact/spigot/build/libs"
-                 "/CrossplatForms-Spigot.jar", "plugins/CrossplatForms-Spigot.jar")
+        download("https://dl.yizhan.wiki/plugins/MagicMenu-1.0.3.jar",
+                 "plugins/Geyser-Spigot/extensions/MagicMenu-1.0.3.jar")
 
 
 if __name__ == "__main__":

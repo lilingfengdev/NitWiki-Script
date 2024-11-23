@@ -66,7 +66,7 @@ class Leaves(SelectNode):
 
     def get_url_by_version(self, ver):
         if ver == "1.18.2":
-            return "https://dl.imc.rip/plugins/Leaves-paperclip-1.18.2.jar"
+            return "https://vip.123pan.cn/1821558579/6492009"
         id = json.loads(requests.get(f"https://api.leavesmc.org/projects/leaves/versions/{ver}").content)["builds"][-1]
         return f"https://api.leavesmc.org/projects/leaves/versions/{ver}/builds/{id}/downloads/ghproxy"
 
