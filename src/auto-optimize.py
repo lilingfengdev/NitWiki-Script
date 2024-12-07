@@ -279,9 +279,13 @@ def optimize_leaf_legacy(leaf):
 @handler("config/leaf-global.yml")
 def optimize_leaf_global(leaf):
     leaf["async"]["async-pathfinding"]["enabled"] = True
+    leaf["async"]["async-pathfinding"]["max-threads"] = os.cpu_count() / 4
     leaf["async"]["async-mob-spawning"]["enabled"] = True
     leaf["async"]["async-entity-tracker"]["enabled"] = True
+    leaf["async"]["async-entity-tracker"]["max-threads"] = os.cpu_count() / 2
     leaf["async"]["async-locator"]["enabled"] = True
+    leaf["async"]["async-locator"]["max-threads"] = 1
+    leaf["async"]["async-playerdata-save"]["enabled"] = True
     if ask("使用 Citizens"):
         leaf["async"]["async-entity-tracker"]["compat-mode"] = True
     if danger:
@@ -290,6 +294,8 @@ def optimize_leaf_global(leaf):
     leaf["performance"]["reduce-packets"]["reduce-entity-move-packets"] = True
     leaf["performance"]["optimize-minecart"]["enabled"] = True
     leaf["performance"]["faster-random-generator"]["enabled"] = True
+    leaf["performance"]["faster-random-generator"]["enable-for-worldgen"] = True
+    leaf["performance"]["create-snapshot-on-retrieving-blockstate"] = False
     if not danger:
         leaf["performance"]["faster-random-generator"]["use-legacy-random-for-slime-chunk"] = True
     dab = leaf["performance"]["dab"]
