@@ -307,6 +307,8 @@ def optimize_leaf_global(leaf):
     leaf["performance"]["dont-save-entity"]["dont-save-falling-block"] = True
     leaf["gameplay-mechanisms"]["player"]["disable-moved-wrongly-threshold"] = True
     leaf["misc"]["lag-compensation"]["enabled"] = True
+    leaf["misc"]["lag-compensation"]["enable-for-water"] = True
+    leaf["misc"]["lag-compensation"]["enable-for-lava"] = True
 
 
 if __name__ == "__main__":
